@@ -55,8 +55,3 @@ CREATE INDEX idx_prestamos_cliente ON prestamos(cliente_cedula);
 CREATE INDEX idx_cuotas_prestamo ON cronograma_pagos(prestamo_id);
 CREATE INDEX idx_cuotas_estado ON cronograma_pagos(estado);
 CREATE INDEX idx_clientes_estado ON clientes(estado);
-
--- Usuario admin por defecto (contraseña: 123456)
-INSERT INTO usuarios (username, password) VALUES
-('admin', '$2a$10$0Pbq5wlKmSJXRAS2kWau/OofKTQUjpC7Su/hFYJ2b.cWQGkPtKIIS')
-ON DUPLICATE KEY UPDATE username=username;
