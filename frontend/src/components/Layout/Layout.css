@@ -229,9 +229,44 @@
 .content {
   flex: 1;
   padding: 24px;
-  background: #f8f9fb;
+  background: var(--bg);
   overflow-y: auto;
   min-width: 0;
+}
+
+/* === DARK MODE === */
+body.dark-mode .topbar {
+  background: var(--topbar-bg);
+  border-color: var(--topbar-border);
+}
+
+body.dark-mode .sidebar {
+  background: var(--sidebar-bg);
+  border-color: var(--sidebar-border);
+}
+
+body.dark-mode .nav-link:hover {
+  background: var(--sidebar-hover);
+}
+
+body.dark-mode .nav-link.active {
+  background: var(--sidebar-active-bg);
+}
+
+body.dark-mode .hamburger-line,
+body.dark-mode .hamburger-line::before,
+body.dark-mode .hamburger-line::after {
+  background: var(--text);
+}
+
+body.dark-mode .btn-logout {
+  background: var(--chip-bg);
+  color: var(--text-muted);
+}
+
+body.dark-mode .btn-logout:hover {
+  background: rgba(211, 47, 47, 0.2);
+  color: #ef5350;
 }
 
 /* === TABLET === */
