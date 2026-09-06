@@ -5,11 +5,13 @@ const router = express.Router();
 
 router.use(auth);
 
-// Listar clientes activos
+// Listar clientes activos del usuario
 router.get('/', async (req, res) => {
   try {
+    const userId = req.user.id;
     const [rows] = await pool.query(
-      "SELECT cedula, nombre, telefono, direccion, fecha_registro, estado FROM clientes WHERE estado = 'ACTIVO' OR estado IS NULL ORDER BY nombre"
+      "SELECT cedula, nombre, telefono, direccion, fecha_registro, estado FROM clientes WHERE user_id = ? AND (estado = 'ACTIVO' OR estado IS NULL) ORDER BY nombre",
+      [userId]
     );
     res.json(rows);
   } catch (error) {
@@ -18,13 +20,14 @@ router.get('/', async (req, res) => {
   }
 });
 
-// Buscar cliente por cedula
+// Buscar cliente por cedula (verificar que pertenece al usuario)
 router.get('/:cedula', async (req, res) => {
   try {
+    const userId = req.user.id;
     const { cedula } = req.params;
     const [rows] = await pool.query(
-      "SELECT cedula, nombre, telefono, direccion, fecha_registro FROM clientes WHERE cedula = ? AND (estado = 'ACTIVO' OR estado IS NULL)",
-      [cedula]
+      "SELECT cedula, nombre, telefono, direccion, fecha_registro FROM clientes WHERE cedula = ? AND user_id = ? AND (estado = 'ACTIVO' OR estado IS NULL)",
+      [cedula, userId]
     );
 
     if (rows.length === 0) {
@@ -38,9 +41,10 @@ router.get('/:cedula', async (req, res) => {
   }
 });
 
-// Registrar cliente
+// Registrar cliente (asociar al usuario actual)
 router.post('/', async (req, res) => {
   try {
+    const userId = req.user.id;
     const { cedula, nombre, telefono, direccion } = req.body;
 
     if (!cedula || !nombre) {
@@ -48,8 +52,8 @@ router.post('/', async (req, res) => {
     }
 
     const [result] = await pool.query(
-      'INSERT INTO clientes (cedula, nombre, telefono, direccion, fecha_registro, estado) VALUES (?, ?, ?, ?, CURDATE(), ?)',
-      [cedula, nombre, telefono || '', direccion || '', 'ACTIVO']
+      'INSERT INTO clientes (cedula, user_id, nombre, telefono, direccion, fecha_registro, estado) VALUES (?, ?, ?, ?, ?, CURDATE(), ?)',
+      [cedula, userId, nombre, telefono || '', direccion || '', 'ACTIVO']
     );
 
     res.status(201).json({ cedula, nombre, telefono, direccion, estado: 'ACTIVO' });
@@ -62,13 +66,14 @@ router.post('/', async (req, res) => {
   }
 });
 
-// Ocultar cliente (cambiar estado a INACTIVO)
+// Ocultar cliente (verificar que pertenece al usuario)
 router.put('/:cedula/ocultar', async (req, res) => {
   try {
+    const userId = req.user.id;
     const { cedula } = req.params;
     const [result] = await pool.query(
-      "UPDATE clientes SET estado = 'INACTIVO' WHERE cedula = ?",
-      [cedula]
+      "UPDATE clientes SET estado = 'INACTIVO' WHERE cedula = ? AND user_id = ?",
+      [cedula, userId]
     );
 
     if (result.affectedRows === 0) {

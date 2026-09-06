@@ -7,14 +7,21 @@ router.use(auth);
 
 router.get('/:cedula', async (req, res) => {
   try {
+    const userId = req.user.id;
     const { cedula } = req.params;
+
+    // Verificar que el cliente pertenece al usuario
+    const [cliente] = await pool.query('SELECT cedula FROM clientes WHERE cedula = ? AND user_id = ?', [cedula, userId]);
+    if (cliente.length === 0) {
+      return res.json({ nivel: 'NUEVO', texto: '⭐⭐⭐ (Nuevo)', color: 'gray' });
+    }
 
     const [rows] = await pool.query(`
       SELECT c.fecha_vencimiento, c.fecha_pago_real, c.estado
       FROM cronograma_pagos c
       JOIN prestamos p ON c.prestamo_id = p.id
-      WHERE p.cliente_cedula = ?
-    `, [cedula]);
+      WHERE p.cliente_cedula = ? AND p.user_id = ?
+    `, [cedula, userId]);
 
     const historial = rows;
 

@@ -7,18 +7,19 @@ const router = express.Router();
 
 router.use(auth);
 
-// Descargar Pagaré PDF
+// Descargar Pagaré PDF (verificar que pertenece al usuario)
 router.get('/pagare/:prestamoId', async (req, res) => {
   try {
+    const userId = req.user.id;
     const { prestamoId } = req.params;
 
-    const [prestamoRows] = await pool.query('SELECT * FROM prestamos WHERE id = ?', [prestamoId]);
+    const [prestamoRows] = await pool.query('SELECT * FROM prestamos WHERE id = ? AND user_id = ?', [prestamoId, userId]);
     if (prestamoRows.length === 0) {
       return res.status(404).json({ error: 'Prestamo no encontrado.' });
     }
     const prestamo = prestamoRows[0];
 
-    const [clienteRows] = await pool.query('SELECT * FROM clientes WHERE cedula = ?', [prestamo.cliente_cedula]);
+    const [clienteRows] = await pool.query('SELECT * FROM clientes WHERE cedula = ? AND user_id = ?', [prestamo.cliente_cedula, userId]);
     const cliente = clienteRows[0];
 
     const [cuotasRows] = await pool.query(
@@ -56,14 +57,18 @@ router.get('/pagare/:prestamoId', async (req, res) => {
   }
 });
 
-// Descargar Recibo de Pago PDF
+// Descargar Recibo de Pago PDF (verificar que pertenece al usuario)
 router.get('/recibo/:cuotaId', async (req, res) => {
   try {
+    const userId = req.user.id;
     const { cuotaId } = req.params;
 
     const [cuotaRows] = await pool.query(
-      'SELECT cp.*, p.cliente_cedula, p.total_a_pagar, p.monto_prestado FROM cronograma_pagos cp JOIN prestamos p ON cp.prestamo_id = p.id WHERE cp.id = ?',
-      [cuotaId]
+      `SELECT cp.*, p.cliente_cedula, p.total_a_pagar, p.monto_prestado, p.user_id
+       FROM cronograma_pagos cp
+       JOIN prestamos p ON cp.prestamo_id = p.id
+       WHERE cp.id = ? AND p.user_id = ?`,
+      [cuotaId, userId]
     );
 
     if (cuotaRows.length === 0) {
@@ -71,7 +76,7 @@ router.get('/recibo/:cuotaId', async (req, res) => {
     }
     const cuota = cuotaRows[0];
 
-    const [clienteRows] = await pool.query('SELECT * FROM clientes WHERE cedula = ?', [cuota.cliente_cedula]);
+    const [clienteRows] = await pool.query('SELECT * FROM clientes WHERE cedula = ? AND user_id = ?', [cuota.cliente_cedula, userId]);
     const cliente = clienteRows[0];
 
     const [recaudoRows] = await pool.query(
@@ -104,14 +109,25 @@ router.get('/recibo/:cuotaId', async (req, res) => {
   }
 });
 
-// Descargar Cierre de Caja PDF
+// Descargar Cierre de Caja PDF (solo datos del usuario)
 router.get('/cierre-caja', async (req, res) => {
   try {
-    const [rows] = await pool.query(
-      "SELECT COALESCE(SUM(valor_cuota), 0) as total FROM cronograma_pagos WHERE estado = 'PAGADA' AND fecha_pago_real = CURRENT_DATE()"
-    );
+    const userId = req.user.id;
+
+    const [rows] = await pool.query(`
+      SELECT COALESCE(SUM(cp.valor_cuota), 0) as total
+      FROM cronograma_pagos cp
+      JOIN prestamos p ON cp.prestamo_id = p.id
+      WHERE p.user_id = ?
+        AND cp.estado = 'PAGADA'
+        AND cp.fecha_pago_real = CURRENT_DATE()
+    `, [userId]);
 
     const total = parseFloat(rows[0].total);
+
+    // Obtener nombre del usuario
+    const [userRows] = await pool.query('SELECT username FROM usuarios WHERE id = ?', [userId]);
+    const username = userRows[0]?.username || 'Usuario';
 
     res.setHeader('Content-Type', 'application/pdf');
     res.setHeader('Content-Disposition', `attachment; filename=Cierre_Caja_${new Date().toISOString().split('T')[0]}.pdf`);
@@ -122,7 +138,7 @@ router.get('/cierre-caja', async (req, res) => {
     generarCierreCaja(doc, {
       fecha: new Date().toISOString().replace('T', ' ').substring(0, 19),
       total,
-      usuario: 'admin',
+      usuario: username,
     });
 
     doc.end();
