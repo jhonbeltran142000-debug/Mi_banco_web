@@ -114,7 +114,6 @@ export default function Login() {
             <form onSubmit={handleLogin}>
               <div className="card-header">
                 <h1>Bienvenido</h1>
-                <p>Ingresa tus credenciales para acceder</p>
               </div>
 
               <div className="field">
@@ -172,7 +171,6 @@ export default function Login() {
             <form onSubmit={handleRegister}>
               <div className="card-header">
                 <h1>Crear Cuenta</h1>
-                <p>Registrate para empezar a usar el sistema</p>
               </div>
 
               <div className="field">
