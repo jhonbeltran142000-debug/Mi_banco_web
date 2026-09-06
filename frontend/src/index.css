@@ -1,0 +1,60 @@
+:root {
+  --primary: #1a237e;
+  --primary-light: #303f9f;
+  --success: #00c853;
+  --success-light: #00e676;
+  --danger: #d32f2f;
+  --danger-light: #e53935;
+  --warning: #e65100;
+  --text: #37474f;
+  --text-muted: #546e7a;
+  --bg: #f8f9fb;
+  --card-bg: #fff;
+  --card-border: #e5e7eb;
+  --input-bg: #ffffff;
+  --input-border: #d1d5db;
+  --table-header-bg: #f3f4f6;
+  --table-hover: #eff3ff;
+  --table-border: #e5e7eb;
+  --sidebar-bg: #fff;
+  --sidebar-border: #e5e7eb;
+  --sidebar-hover: #f3f4f6;
+  --sidebar-active-bg: #eef0ff;
+  --topbar-bg: #fff;
+  --topbar-border: #e5e7eb;
+  --heading-color: #1a1a2e;
+  --muted: #8c8c9a;
+  --placeholder: #b0b0bc;
+  --border-color: #d1d5db;
+  --chip-bg: #f3f4f6;
+
+  --sans: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+  font: 16px/1.5 var(--sans);
+  color: var(--text);
+  background: var(--bg);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+}
+
+#root {
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--sans);
+  font-weight: 600;
+  color: var(--heading-color);
+}

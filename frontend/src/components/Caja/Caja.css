@@ -1,0 +1,165 @@
+/* === CAJA === */
+.caja-page {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  animation: fadeInUp 0.4s ease;
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.buscar-card .card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.buscar-row {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.buscar-input-wrapper {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+}
+
+.buscar-input-wrapper svg {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #9e9e9e;
+  pointer-events: none;
+}
+
+.buscar-input-wrapper input {
+  width: 100%;
+  padding: 13px 14px 13px 44px;
+  border: 2px solid #d1d5db;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  color: #1a1a2e;
+  background: #fff;
+  box-sizing: border-box;
+  transition: all 0.2s ease;
+}
+
+.buscar-input-wrapper input::placeholder {
+  color: #9e9e9e;
+}
+
+.buscar-input-wrapper input:focus {
+  outline: none;
+  border-color: #1a237e;
+  background: #fff;
+  box-shadow: 0 0 0 4px rgba(26, 35, 126, 0.08);
+}
+
+.cliente-banner {
+  background: linear-gradient(135deg, rgba(26, 35, 126, 0.08), rgba(26, 35, 126, 0.15));
+  border: 1px solid rgba(26, 35, 126, 0.2);
+}
+
+.cliente-banner .cliente-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.cliente-banner h2 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #1a237e;
+  margin: 0;
+}
+
+.cliente-banner .cliente-meta {
+  color: #546e7a;
+  font-size: 0.9rem;
+}
+
+.tab-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.caja-status {
+  background: linear-gradient(135deg, #1b5e20, #2e7d32);
+  border-radius: 14px;
+  padding: 20px 24px;
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.caja-status .status-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.caja-status .status-label {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.caja-status .status-value {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #69f0ae;
+}
+
+.cuota-pagada {
+  color: #66bb6a;
+}
+
+.cuota-pendiente {
+  color: #ef5350;
+}
+
+.fila-seleccionada {
+  background: #eef0ff !important;
+}
+
+@media (max-width: 768px) {
+  .buscar-row {
+    flex-direction: column;
+  }
+
+  .buscar-row .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .cliente-banner .cliente-details {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .caja-status {
+    gap: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .caja-status {
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .caja-status .status-value {
+    font-size: 1.1rem;
+  }
+}

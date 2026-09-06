@@ -1,0 +1,142 @@
+/* === SIMULADOR === */
+.simulador-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.simulador-grid .form-field select,
+.simulador-grid .form-field input {
+  padding: 12px 14px;
+  border: 2px solid #d1d5db;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  color: #1a1a2e;
+  background: #fff;
+  transition: all 0.2s ease;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.simulador-grid .form-field select:focus,
+.simulador-grid .form-field input:focus {
+  outline: none;
+  border-color: #1a237e;
+  background: #fff;
+  box-shadow: 0 0 0 4px rgba(26, 35, 126, 0.08);
+}
+
+.scoring-badge {
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-top: 6px;
+  display: inline-block;
+}
+
+.sim-btn-group {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-top: 8px;
+}
+
+.resumen-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.resumen-card {
+  background: #fff;
+  border-radius: 14px;
+  padding: 20px;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.resumen-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #8c8c9a;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 6px;
+}
+
+.resumen-value {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #1a1a2e;
+}
+
+.resumen-card.resumen-ganancia .resumen-value {
+  color: #66bb6a;
+}
+
+.resumen-card.resumen-total {
+  background: #eef0ff;
+  border-color: rgba(26, 35, 126, 0.2);
+}
+
+.resumen-card.resumen-total .resumen-value {
+  color: #1a237e;
+}
+
+.cronograma-card {
+  background: #fff;
+  border-radius: 14px;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+  overflow: hidden;
+}
+
+.cronograma-header {
+  padding: 20px 24px 16px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.cronograma-header h2 {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #1a1a2e;
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .simulador-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .sim-btn-group {
+    flex-direction: column;
+  }
+
+  .sim-btn-group .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .resumen-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .resumen-card {
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: left;
+  }
+}
+
+@media (max-width: 480px) {
+  .simulador-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .resumen-value {
+    font-size: 1.1rem;
+  }
+}

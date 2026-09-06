@@ -1,0 +1,15 @@
+{
+  "name": "banco-web",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start:backend": "cd backend && npm run dev",
+    "start:frontend": "cd frontend && npm run dev",
+    "start": "npx concurrently -n \"BE,FE\" -c \"green,blue\" \"npm run start:backend\" \"npm run start:frontend\"",
+    "start:mysql": "sudo /opt/lampp/lampp startmysql",
+    "dev": "sudo /opt/lampp/lampp startmysql && npx concurrently -n \"BE,FE\" -c \"green,blue\" \"npm run start:backend\" \"npm run start:frontend\""
+  },
+  "devDependencies": {
+    "concurrently": "^10.0.5"
+  }
+}
