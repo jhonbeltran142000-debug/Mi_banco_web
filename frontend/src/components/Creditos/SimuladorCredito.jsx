@@ -51,7 +51,10 @@ export default function SimuladorCredito() {
   const handleModalidadChange = (e) => {
     const mod = e.target.value;
     setModalidad(mod);
-    if (mod.includes('Gota')) {
+    if (mod === 'Gota a Gota (Semana)') {
+      setTasa('20');
+      setPlazo('8');
+    } else if (mod.includes('Gota')) {
       setTasa('20');
       setPlazo('30');
     } else {
@@ -72,7 +75,15 @@ export default function SimuladorCredito() {
       let total = 0;
       const cuotas = [];
 
-      if (modalidad.includes('Gota')) {
+      if (modalidad === 'Gota a Gota (Semana)') {
+        const valorCuota = redondear((m + m * t) / p, 100);
+        for (let i = 1; i <= p; i++) {
+          const fecha = new Date(hoy);
+          fecha.setDate(fecha.getDate() + i * 7);
+          cuotas.push({ numero: i, fecha: fecha.toISOString().split('T')[0], valor: valorCuota });
+          total += valorCuota;
+        }
+      } else if (modalidad.includes('Gota')) {
         const valorCuota = redondear((m + m * t) / p, 100);
         for (let i = 1; i <= p; i++) {
           const fecha = new Date(hoy);
@@ -164,6 +175,7 @@ export default function SimuladorCredito() {
               <select id="sim-modalidad" value={modalidad} onChange={handleModalidadChange}>
                 <option value="Bancario (Mes)">Bancario (Mes)</option>
                 <option value="Gota a Gota (Dia)">Gota a Gota (Dia)</option>
+                <option value="Gota a Gota (Semana)">Gota a Gota (Semana)</option>
               </select>
             </div>
 
@@ -178,7 +190,7 @@ export default function SimuladorCredito() {
             </div>
 
             <div className="form-field">
-              <label htmlFor="sim-plazo">{modalidad.includes('Gota') ? 'Dias' : 'Meses'}</label>
+              <label htmlFor="sim-plazo">{modalidad === 'Gota a Gota (Semana)' ? 'Semanas' : modalidad.includes('Gota') ? 'Dias' : 'Meses'}</label>
               <input id="sim-plazo" type="number" value={plazo} onChange={(e) => setPlazo(e.target.value)} />
             </div>
           </div>

@@ -29,7 +29,9 @@ export default function Dashboard() {
 
   const calcularFechaFin = (fechaInicio, plazo, modalidad) => {
     const fecha = new Date(fechaInicio);
-    if (modalidad.includes('Gota')) {
+    if (modalidad === 'Gota a Gota (Semana)') {
+      fecha.setDate(fecha.getDate() + plazo * 7);
+    } else if (modalidad.includes('Gota')) {
       fecha.setDate(fecha.getDate() + plazo);
     } else {
       fecha.setDate(fecha.getDate() + plazo * 30);
