@@ -34,36 +34,36 @@
   left: 14px;
   top: 50%;
   transform: translateY(-50%);
-  color: #9e9e9e;
+  color: var(--placeholder);
   pointer-events: none;
 }
 
 .buscar-input-wrapper input {
   width: 100%;
   padding: 13px 14px 13px 44px;
-  border: 2px solid #d1d5db;
-  border-radius: 10px;
+  border: 1.5px solid var(--input-border);
+  border-radius: var(--radius);
   font-size: 0.95rem;
-  color: #1a1a2e;
-  background: #fff;
+  color: var(--text);
+  background: var(--input-bg);
   box-sizing: border-box;
-  transition: all 0.2s ease;
+  transition: border-color 0.2s var(--ease), box-shadow 0.2s var(--ease);
 }
 
 .buscar-input-wrapper input::placeholder {
-  color: #9e9e9e;
+  color: var(--placeholder);
 }
 
 .buscar-input-wrapper input:focus {
   outline: none;
-  border-color: #1a237e;
-  background: #fff;
-  box-shadow: 0 0 0 4px rgba(26, 35, 126, 0.08);
+  border-color: var(--primary);
+  background: var(--card-bg);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--primary) 14%, transparent);
 }
 
 .cliente-banner {
-  background: linear-gradient(135deg, rgba(26, 35, 126, 0.08), rgba(26, 35, 126, 0.15));
-  border: 1px solid rgba(26, 35, 126, 0.2);
+  background: linear-gradient(135deg, color-mix(in srgb, var(--primary) 8%, transparent), color-mix(in srgb, var(--primary) 15%, transparent));
+  border: 1px solid color-mix(in srgb, var(--primary) 25%, transparent);
 }
 
 .cliente-banner .cliente-details {
@@ -77,12 +77,12 @@
 .cliente-banner h2 {
   font-size: 1.15rem;
   font-weight: 700;
-  color: #1a237e;
+  color: var(--primary-text);
   margin: 0;
 }
 
 .cliente-banner .cliente-meta {
-  color: #546e7a;
+  color: var(--text-muted);
   font-size: 0.9rem;
 }
 
@@ -92,8 +92,8 @@
 }
 
 .caja-status {
-  background: linear-gradient(135deg, #1b5e20, #2e7d32);
-  border-radius: 14px;
+  background: linear-gradient(135deg, #14532d, var(--success));
+  border-radius: var(--radius-lg);
   padding: 20px 24px;
   display: flex;
   justify-content: center;
@@ -108,28 +108,30 @@
 }
 
 .caja-status .status-label {
-  color: rgba(255, 255, 255, 0.7);
-  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 0.76rem;
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
 
 .caja-status .status-value {
+  font-family: var(--font-display);
   font-size: 1.4rem;
   font-weight: 700;
-  color: #69f0ae;
+  color: #a7f3c9;
+  font-variant-numeric: tabular-nums;
 }
 
 .cuota-pagada {
-  color: #66bb6a;
+  color: var(--success);
 }
 
 .cuota-pendiente {
-  color: #ef5350;
+  color: var(--danger);
 }
 
 .fila-seleccionada {
-  background: #eef0ff !important;
+  background: var(--sidebar-active-bg) !important;
 }
 
 @media (max-width: 768px) {

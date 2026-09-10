@@ -1,14 +1,12 @@
-/* === DASHBOARD === */
+/* =========================================================
+   Reportes / Dashboard
+   ========================================================= */
+
 .dashboard {
   display: flex;
   flex-direction: column;
   gap: 24px;
-  animation: fadeInUp 0.4s ease;
-}
-
-@keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(12px); }
-  to { opacity: 1; transform: translateY(0); }
+  animation: fadeInUp 0.4s var(--ease);
 }
 
 .dash-header {
@@ -22,33 +20,32 @@
 .dash-header-text h1 {
   font-size: 1.6rem;
   font-weight: 700;
-  color: #1a1a2e;
+  color: var(--heading-color);
   margin: 0;
 }
 
 .dash-header-text p {
-  color: #8c8c9a;
+  color: var(--muted);
   font-size: 0.9rem;
   margin: 4px 0 0;
 }
 
 .btn-refresh {
   padding: 10px 20px;
-  background: #fff;
-  color: #1a237e;
-  border: 2px solid #d1d5db;
-  border-radius: 10px;
+  background: var(--card-bg);
+  color: var(--primary-text);
+  border: 1.5px solid var(--border-color);
+  border-radius: var(--radius);
   font-size: 0.9rem;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: transform 0.2s var(--ease), box-shadow 0.2s var(--ease), border-color 0.2s var(--ease);
 }
 
 .btn-refresh:hover {
-  border-color: #1a237e;
-  background: #eef0ff;
+  border-color: var(--primary);
   transform: translateY(-1px);
-  box-shadow: 0 2px 8px rgba(26, 35, 126, 0.1);
+  box-shadow: var(--shadow-xs);
 }
 
 .btn-refresh:disabled {
@@ -67,16 +64,13 @@
 .spinner-sm {
   width: 14px;
   height: 14px;
-  border: 2px solid #d1d5db;
-  border-top-color: #1a237e;
+  border: 2px solid var(--border-color);
+  border-top-color: var(--primary);
   border-radius: 50%;
   animation: spin 0.6s linear infinite;
 }
 
-@keyframes spin {
-  to { transform: rotate(360deg); }
-}
-
+/* --- Metric cards --- */
 .metricas-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -84,26 +78,26 @@
 }
 
 .metrica-card {
-  background: #fff;
-  border-radius: 14px;
+  background: var(--card-bg);
+  border-radius: var(--radius-lg);
   padding: 20px;
   display: flex;
   align-items: center;
   gap: 16px;
-  border: 1px solid #e5e7eb;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
-  transition: all 0.25s ease;
+  border: 1px solid var(--card-border);
+  box-shadow: var(--shadow-xs);
+  transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease);
 }
 
 .metrica-card:hover {
   transform: translateY(-3px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow-md);
 }
 
 .metrica-icon {
   width: 52px;
   height: 52px;
-  border-radius: 12px;
+  border-radius: var(--radius);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -111,23 +105,23 @@
 }
 
 .metrica-blue .metrica-icon {
-  background: linear-gradient(135deg, #e3f2fd, #bbdefb);
-  color: #1565c0;
+  background: color-mix(in srgb, var(--info) 14%, transparent);
+  color: var(--info);
 }
 
 .metrica-green .metrica-icon {
-  background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
-  color: #2e7d32;
+  background: color-mix(in srgb, var(--success) 14%, transparent);
+  color: var(--success);
 }
 
 .metrica-purple .metrica-icon {
-  background: linear-gradient(135deg, #f3e5f5, #e1bee7);
-  color: #7b1fa2;
+  background: color-mix(in srgb, #7b1fa2 16%, transparent);
+  color: #9c4dcc;
 }
 
 .metrica-red .metrica-icon {
-  background: linear-gradient(135deg, #ffebee, #ffcdd2);
-  color: #c62828;
+  background: color-mix(in srgb, var(--danger) 14%, transparent);
+  color: var(--danger);
 }
 
 .metrica-info {
@@ -137,31 +131,34 @@
 }
 
 .metrica-label {
-  font-size: 0.78rem;
+  font-size: 0.76rem;
   font-weight: 500;
-  color: #8c8c9a;
+  color: var(--text-muted);
   text-transform: uppercase;
   letter-spacing: 0.3px;
   margin-bottom: 4px;
 }
 
 .metrica-value {
-  font-size: 1.3rem;
+  font-family: var(--font-display);
+  font-size: 1.25rem;
   font-weight: 700;
-  color: #1a1a2e;
+  color: var(--heading-color);
   white-space: nowrap;
+  font-variant-numeric: tabular-nums;
 }
 
+/* --- Stats bar --- */
 .dash-stats-bar {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 32px;
   padding: 18px 24px;
-  background: #fff;
-  border-radius: 12px;
-  border: 1px solid #e5e7eb;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  border: 1px solid var(--card-border);
+  box-shadow: var(--shadow-xs);
 }
 
 .stat-item {
@@ -171,28 +168,31 @@
 }
 
 .stat-number {
+  font-family: var(--font-display);
   font-size: 1.3rem;
   font-weight: 700;
-  color: #1a237e;
+  color: var(--primary-text);
+  font-variant-numeric: tabular-nums;
 }
 
 .stat-label {
   font-size: 0.8rem;
-  color: #8c8c9a;
+  color: var(--muted);
   margin-top: 2px;
 }
 
 .stat-divider {
   width: 1px;
   height: 36px;
-  background: #e5e7eb;
+  background: var(--card-border);
 }
 
+/* --- Table card --- */
 .dash-table-card {
-  background: #fff;
-  border-radius: 14px;
-  border: 1px solid #e5e7eb;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+  background: var(--card-bg);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--card-border);
+  box-shadow: var(--shadow-xs);
   overflow: hidden;
 }
 
@@ -201,88 +201,23 @@
   justify-content: space-between;
   align-items: center;
   padding: 20px 24px 16px;
-  border-bottom: 1px solid #e5e7eb;
+  border-bottom: 1px solid var(--card-border);
 }
 
 .dash-table-header h2 {
   font-size: 1.1rem;
   font-weight: 600;
-  color: #1a1a2e;
+  color: var(--heading-color);
   margin: 0;
 }
 
 .table-count {
   font-size: 0.8rem;
-  color: #8c8c9a;
-  background: #f3f4f6;
+  color: var(--text-muted);
+  background: var(--chip-bg);
   padding: 4px 12px;
-  border-radius: 20px;
+  border-radius: var(--radius-pill);
   font-weight: 500;
-}
-
-.dash-table-card .table-wrapper {
-  padding: 0;
-}
-
-.data-table {
-  width: 100%;
-  border-collapse: collapse;
-  min-width: 550px;
-}
-
-.data-table th {
-  background: #f3f4f6;
-  color: #6b7280;
-  padding: 12px 20px;
-  text-align: left;
-  font-weight: 600;
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  border-bottom: 1px solid #e5e7eb;
-  white-space: nowrap;
-}
-
-.data-table td {
-  padding: 14px 20px;
-  border-bottom: 1px solid #f3f4f6;
-  font-size: 0.9rem;
-  color: #37474f;
-}
-
-.data-table tbody tr {
-  transition: background 0.15s;
-}
-
-.data-table tbody tr:hover {
-  background: #eff3ff;
-}
-
-.data-table tbody tr:last-child td {
-  border-bottom: none;
-}
-
-.td-mono {
-  font-family: 'SF Mono', 'Consolas', monospace;
-  font-size: 0.85rem;
-  color: #6b7280;
-}
-
-.td-bold {
-  font-weight: 600;
-  color: #1a1a2e;
-}
-
-.td-amount {
-  font-weight: 600;
-  color: #1a237e;
-}
-
-.no-data {
-  text-align: center;
-  color: #b0b0bc;
-  padding: 40px 20px;
-  font-size: 0.95rem;
 }
 
 @media (max-width: 900px) {
@@ -323,7 +258,7 @@
   .metrica-icon {
     width: 42px;
     height: 42px;
-    border-radius: 10px;
+    border-radius: var(--radius-sm);
   }
 
   .metrica-icon svg {
@@ -332,7 +267,7 @@
   }
 
   .metrica-label {
-    font-size: 0.7rem;
+    font-size: 0.68rem;
   }
 
   .metrica-value {

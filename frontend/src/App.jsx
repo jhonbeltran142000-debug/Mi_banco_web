@@ -8,7 +8,6 @@ import Clientes from './components/Clientes/Clientes';
 import SimuladorCredito from './components/Creditos/SimuladorCredito';
 import Caja from './components/Caja/Caja';
 import Dashboard from './components/Reportes/Dashboard';
-import './App.css';
 
 function PrivateRoute({ children }) {
   const { user, loading } = useAuth();

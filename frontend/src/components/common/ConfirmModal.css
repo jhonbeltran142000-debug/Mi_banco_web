@@ -10,14 +10,14 @@
 }
 
 .confirm-modal {
-  background: #fff;
-  border-radius: 12px;
+  background: var(--card-bg);
+  border-radius: var(--radius-lg);
   padding: 24px;
   max-width: 400px;
   width: 100%;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-  animation: confirmIn 0.2s ease;
-  border: 1px solid #e5e7eb;
+  box-shadow: var(--shadow-lg);
+  animation: confirmIn 0.2s var(--ease);
+  border: 1px solid var(--card-border);
 }
 
 @keyframes confirmIn {
@@ -27,7 +27,7 @@
 
 .confirm-msg {
   font-size: 1rem;
-  color: #37474f;
+  color: var(--text);
   margin-bottom: 20px;
   line-height: 1.5;
 }
@@ -41,27 +41,27 @@
 .confirm-btn {
   padding: 8px 20px;
   border: none;
-  border-radius: 8px;
+  border-radius: var(--radius-sm);
   font-size: 0.9rem;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.2s var(--ease);
 }
 
 .confirm-cancel {
-  background: #f3f4f6;
-  color: #37474f;
+  background: var(--chip-bg);
+  color: var(--text);
 }
 
 .confirm-cancel:hover {
-  background: #e5e7eb;
+  background: var(--border-color);
 }
 
 .confirm-ok {
-  background: linear-gradient(135deg, #1a237e, #283593);
+  background: linear-gradient(135deg, var(--primary), var(--primary-light));
   color: white;
 }
 
 .confirm-ok:hover {
-  background: linear-gradient(135deg, #303f9f, #3949ab);
+  filter: brightness(1.1);
 }

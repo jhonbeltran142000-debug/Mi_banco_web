@@ -21,25 +21,25 @@
   cursor: pointer;
   pointer-events: auto;
   animation: toastIn 0.3s ease;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  box-shadow: var(--shadow-lg);
   min-width: 280px;
   max-width: 400px;
 }
 
 .toast-success {
-  background: linear-gradient(135deg, #27ae60, #2ecc71);
+  background: linear-gradient(135deg, #1b5e20, var(--success-light));
 }
 
 .toast-error {
-  background: linear-gradient(135deg, #c0392b, #e74c3c);
+  background: linear-gradient(135deg, #b71c1c, var(--danger-light));
 }
 
 .toast-info {
-  background: linear-gradient(135deg, #2980b9, #3498db);
+  background: linear-gradient(135deg, #0d47a1, #42a5f5);
 }
 
 .toast-warning {
-  background: linear-gradient(135deg, #f39c12, #f1c40f);
+  background: linear-gradient(135deg, #e65100, #ffb74d);
   color: #1a1a2e;
 }
 

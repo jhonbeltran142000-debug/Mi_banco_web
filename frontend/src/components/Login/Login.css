@@ -50,6 +50,7 @@
 }
 
 .brand-title {
+  font-family: var(--font-display);
   font-size: 2rem;
   font-weight: 700;
   color: #fff;
@@ -99,26 +100,24 @@
   justify-content: center;
   align-items: center;
   padding: 40px;
-  background: #f8f9fb;
+  background: var(--bg);
 }
 
 .login-card {
   width: 100%;
   max-width: 420px;
-  background: #fff;
+  background: var(--card-bg);
   border-radius: 20px;
   padding: 40px 36px;
-  box-shadow:
-    0 4px 6px rgba(0, 0, 0, 0.02),
-    0 12px 40px rgba(0, 0, 0, 0.08);
-  border: 1px solid #e8e8ed;
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--card-border);
 }
 
 .tabs {
   display: flex;
   gap: 0;
   margin-bottom: 32px;
-  background: #f0f0f5;
+  background: var(--chip-bg);
   border-radius: 12px;
   padding: 4px;
 }
@@ -128,7 +127,7 @@
   padding: 14px;
   border: none;
   background: transparent;
-  color: #6b6b80;
+  color: var(--text-muted);
   font-size: 0.95rem;
   font-weight: 600;
   cursor: pointer;
@@ -137,14 +136,14 @@
 }
 
 .tab-btn.active {
-  background: #fff;
-  color: #1a237e;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+  background: var(--card-bg);
+  color: var(--primary-text);
+  box-shadow: var(--shadow-sm);
 }
 
 .tab-btn:hover:not(.active) {
-  color: #1a237e;
-  background: rgba(255, 255, 255, 0.5);
+  color: var(--primary-text);
+  background: color-mix(in srgb, var(--card-bg) 50%, transparent);
 }
 
 .card-header {
@@ -155,7 +154,7 @@
 .card-header h1 {
   font-size: 1.75rem;
   font-weight: 700;
-  color: #1a1a2e;
+  color: var(--heading-color);
   margin: 0;
   text-align: center;
 }
@@ -167,7 +166,7 @@
 .field label {
   display: block;
   font-weight: 600;
-  color: #37474f;
+  color: var(--text-muted);
   margin-bottom: 8px;
   font-size: 0.85rem;
   text-transform: uppercase;
@@ -183,46 +182,46 @@
 .input-icon {
   position: absolute;
   left: 16px;
-  color: #9e9e9e;
+  color: var(--placeholder);
   pointer-events: none;
   transition: color 0.2s;
 }
 
 .input-wrapper:focus-within .input-icon {
-  color: #1a237e;
+  color: var(--primary);
 }
 
 .field input {
   width: 100%;
   padding: 16px 16px 16px 50px;
-  border: 2px solid #e8e8ed;
+  border: 1.5px solid var(--input-border);
   border-radius: 12px;
   font-size: 1rem;
-  color: #1a1a2e;
-  background: #fafafa;
+  color: var(--text);
+  background: var(--input-bg);
   box-sizing: border-box;
   transition: all 0.2s ease;
 }
 
 .field input::placeholder {
-  color: #b0b0bc;
+  color: var(--placeholder);
 }
 
 .field input:focus {
   outline: none;
-  border-color: #1a237e;
-  background: #fff;
-  box-shadow: 0 0 0 4px rgba(26, 35, 126, 0.08);
+  border-color: var(--primary);
+  background: var(--card-bg);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--primary) 14%, transparent);
 }
 
 .error-msg {
-  background: #fff2f0;
-  color: #c62828;
+  background: color-mix(in srgb, var(--danger) 12%, transparent);
+  color: var(--danger);
   padding: 14px 18px;
   border-radius: 10px;
   margin-bottom: 20px;
   font-size: 0.9rem;
-  border: 1px solid #ffccc7;
+  border: 1px solid color-mix(in srgb, var(--danger) 28%, transparent);
   animation: shakeIn 0.4s ease;
   text-align: center;
 }
@@ -230,7 +229,7 @@
 .btn-login {
   width: 100%;
   padding: 16px;
-  background: linear-gradient(135deg, #1a237e 0%, #283593 100%);
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
   color: white;
   border: none;
   border-radius: 12px;
@@ -248,7 +247,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, #0d47a1 0%, #1565c0 100%);
+  background: rgba(255, 255, 255, 0.14);
   opacity: 0;
   transition: opacity 0.25s;
 }
@@ -259,7 +258,7 @@
 
 .btn-login:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(26, 35, 126, 0.35);
+  box-shadow: var(--shadow-md);
 }
 
 .btn-login:active {
@@ -267,7 +266,7 @@
 }
 
 .btn-login:disabled {
-  background: #c5c5d0;
+  background: var(--border-color);
   cursor: not-allowed;
   transform: none;
   box-shadow: none;
@@ -295,7 +294,7 @@
 
 .login-footer {
   text-align: center;
-  color: #b0b0bc;
+  color: var(--placeholder);
   font-size: 0.8rem;
   margin: 28px 0 0;
 }

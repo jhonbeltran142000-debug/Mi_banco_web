@@ -1,9 +1,11 @@
 import axios from 'axios';
 
-export const BASE_URL = 'https://mi-banco-web.vercel.app';
+const API_URL = import.meta.env.VITE_API_URL || '/api';
+
+export const BASE_URL = API_URL.replace(/\/api\/?$/, '');
 
 const api = axios.create({
-  baseURL: `${BASE_URL}/api`,
+  baseURL: API_URL,
 });
 
 api.interceptors.request.use((config) => {

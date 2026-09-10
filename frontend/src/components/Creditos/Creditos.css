@@ -8,12 +8,12 @@
 .simulador-grid .form-field select,
 .simulador-grid .form-field input {
   padding: 12px 14px;
-  border: 2px solid #d1d5db;
-  border-radius: 10px;
+  border: 1.5px solid var(--input-border);
+  border-radius: var(--radius);
   font-size: 0.95rem;
-  color: #1a1a2e;
-  background: #fff;
-  transition: all 0.2s ease;
+  color: var(--text);
+  background: var(--input-bg);
+  transition: border-color 0.2s var(--ease), box-shadow 0.2s var(--ease);
   width: 100%;
   box-sizing: border-box;
 }
@@ -21,9 +21,9 @@
 .simulador-grid .form-field select:focus,
 .simulador-grid .form-field input:focus {
   outline: none;
-  border-color: #1a237e;
-  background: #fff;
-  box-shadow: 0 0 0 4px rgba(26, 35, 126, 0.08);
+  border-color: var(--primary);
+  background: var(--card-bg);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--primary) 14%, transparent);
 }
 
 .scoring-badge {
@@ -47,11 +47,11 @@
 }
 
 .resumen-card {
-  background: #fff;
-  border-radius: 14px;
+  background: var(--card-bg);
+  border-radius: var(--radius-lg);
   padding: 20px;
-  border: 1px solid #e5e7eb;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+  border: 1px solid var(--card-border);
+  box-shadow: var(--shadow-xs);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -61,48 +61,50 @@
 .resumen-label {
   font-size: 0.75rem;
   font-weight: 600;
-  color: #8c8c9a;
+  color: var(--text-muted);
   text-transform: uppercase;
   letter-spacing: 0.5px;
   margin-bottom: 6px;
 }
 
 .resumen-value {
-  font-size: 1.4rem;
+  font-family: var(--font-display);
+  font-size: 1.35rem;
   font-weight: 700;
-  color: #1a1a2e;
+  color: var(--heading-color);
+  font-variant-numeric: tabular-nums;
 }
 
 .resumen-card.resumen-ganancia .resumen-value {
-  color: #66bb6a;
+  color: var(--success);
 }
 
 .resumen-card.resumen-total {
-  background: #eef0ff;
-  border-color: rgba(26, 35, 126, 0.2);
+  background: var(--primary-soft);
+  border-color: color-mix(in srgb, var(--primary) 25%, transparent);
 }
 
 .resumen-card.resumen-total .resumen-value {
-  color: #1a237e;
+  color: var(--primary-text);
 }
 
 .cronograma-card {
-  background: #fff;
-  border-radius: 14px;
-  border: 1px solid #e5e7eb;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+  background: var(--card-bg);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--card-border);
+  box-shadow: var(--shadow-xs);
   overflow: hidden;
 }
 
 .cronograma-header {
   padding: 20px 24px 16px;
-  border-bottom: 1px solid #e5e7eb;
+  border-bottom: 1px solid var(--card-border);
 }
 
 .cronograma-header h2 {
   font-size: 1.05rem;
   font-weight: 600;
-  color: #1a1a2e;
+  color: var(--heading-color);
   margin: 0;
 }
 
