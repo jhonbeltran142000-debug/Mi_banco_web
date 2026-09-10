@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { NavLink, Outlet } from 'react-router-dom';
+import { NavLink, Outlet, useLocation } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { useDarkMode } from '../../context/DarkModeContext';
 import './Layout.css';
@@ -7,6 +7,7 @@ import './Layout.css';
 export default function Layout() {
   const { user, logout } = useAuth();
   const { isDark, toggleDark } = useDarkMode();
+  const location = useLocation();
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const handleNavClick = () => {
@@ -121,7 +122,9 @@ export default function Layout() {
         </nav>
 
         <main className="content">
-          <Outlet />
+          <div className="route-fade" key={location.pathname}>
+            <Outlet />
+          </div>
         </main>
       </div>
     </div>

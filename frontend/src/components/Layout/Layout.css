@@ -234,6 +234,15 @@
   min-width: 0;
 }
 
+.route-fade {
+  animation: routeFade 0.35s var(--ease);
+}
+
+@keyframes routeFade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
 /* === DARK MODE === */
 body.dark-mode .topbar {
   background: var(--topbar-bg);
