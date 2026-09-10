@@ -1,56 +1,51 @@
+/* =========================================================
+   Login — Liquid Glass (cinematic dark)
+   ========================================================= */
+
 .login-page {
   display: flex;
   min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+  background: #050507;
+  color: #dfe3e8;
+}
+
+.login-page::before {
+  content: '';
+  position: absolute;
+  inset: -30%;
+  background:
+    radial-gradient(38% 38% at 22% 28%, rgba(52, 245, 161, 0.22), transparent 60%),
+    radial-gradient(36% 36% at 80% 18%, rgba(96, 165, 250, 0.18), transparent 60%),
+    radial-gradient(44% 44% at 62% 92%, rgba(16, 185, 129, 0.20), transparent 62%);
+  filter: blur(50px);
+  animation: aurora 24s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+
+.login-page::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0.35;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.45'/%3E%3C/svg%3E");
 }
 
 .login-left {
   flex: 1;
-  background:
-    radial-gradient(circle at 15% 20%, rgba(0, 200, 83, 0.16), transparent 42%),
-    radial-gradient(circle at 85% 85%, rgba(63, 81, 181, 0.45), transparent 55%),
-    linear-gradient(135deg, #080d2e 0%, #141b5c 42%, #1a237e 72%, #0b1142 100%);
-  background-size: 100% 100%, 100% 100%, 220% 220%;
-  animation: gradientShift 18s ease-in-out infinite;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   padding: 40px;
   position: relative;
-  overflow: hidden;
-}
-
-.login-left::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image:
-    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
-  background-size: 44px 44px;
-  mask-image: radial-gradient(circle at 50% 50%, #000 20%, transparent 78%);
-  -webkit-mask-image: radial-gradient(circle at 50% 50%, #000 20%, transparent 78%);
-  pointer-events: none;
-}
-
-.login-left::after {
-  content: '';
-  position: absolute;
-  width: 360px;
-  height: 360px;
-  background: radial-gradient(circle, rgba(0, 200, 83, 0.28) 0%, transparent 68%);
-  bottom: -120px;
-  left: -100px;
-  border-radius: 50%;
-  filter: blur(10px);
-  animation: orbFloat 12s ease-in-out infinite;
-  pointer-events: none;
+  z-index: 1;
 }
 
 .login-brand {
   text-align: center;
-  position: relative;
-  z-index: 1;
   margin-bottom: 48px;
 }
 
@@ -60,16 +55,18 @@
 }
 
 .brand-title {
-  font-family: var(--font-display);
-  font-size: 2rem;
-  font-weight: 700;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 2.65rem;
+  font-weight: 400;
   color: #fff;
   margin: 0 0 8px;
-  letter-spacing: -0.5px;
+  letter-spacing: -0.01em;
+  line-height: 1.05;
 }
 
 .brand-subtitle {
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(255, 255, 255, 0.58);
   font-size: 1rem;
   margin: 0;
 }
@@ -77,30 +74,32 @@
 .login-features {
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  position: relative;
-  z-index: 1;
+  gap: 14px;
+  width: 100%;
+  max-width: 340px;
 }
 
 .feature-item {
   display: flex;
   align-items: center;
   gap: 12px;
-  color: rgba(255, 255, 255, 0.9);
+  color: rgba(255, 255, 255, 0.88);
   font-size: 0.95rem;
-  padding: 12px 20px;
-  background: rgba(255, 255, 255, 0.07);
-  border-radius: 12px;
-  backdrop-filter: blur(6px);
+  padding: 12px 18px;
+  background: rgba(255, 255, 255, 0.045);
+  border-radius: 14px;
+  backdrop-filter: blur(14px) saturate(150%);
+  -webkit-backdrop-filter: blur(14px) saturate(150%);
   border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.06);
   animation: slideIn 0.6s ease-out backwards;
   transition: transform 0.25s var(--ease), background 0.25s var(--ease), border-color 0.25s var(--ease);
 }
 
 .feature-item:hover {
   transform: translateX(6px);
-  background: rgba(255, 255, 255, 0.12);
-  border-color: rgba(0, 200, 83, 0.4);
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(52, 245, 161, 0.4);
 }
 
 .feature-item:nth-child(1) { animation-delay: 0.2s; }
@@ -115,9 +114,9 @@
   height: 34px;
   flex-shrink: 0;
   border-radius: 10px;
-  color: #00e676;
-  background: rgba(0, 200, 83, 0.14);
-  border: 1px solid rgba(0, 200, 83, 0.28);
+  color: #34f5a1;
+  background: rgba(52, 245, 161, 0.12);
+  border: 1px solid rgba(52, 245, 161, 0.28);
 }
 
 .login-right {
@@ -126,19 +125,24 @@
   justify-content: center;
   align-items: center;
   padding: 40px;
-  background: var(--bg);
+  position: relative;
+  z-index: 1;
 }
 
 .login-card {
   width: 100%;
   max-width: 420px;
-  background: var(--card-bg);
-  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.045);
+  backdrop-filter: blur(30px) saturate(150%);
+  -webkit-backdrop-filter: blur(30px) saturate(150%);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  border-radius: 24px;
   padding: 40px 36px;
-  box-shadow: var(--shadow-md);
-  border: 1px solid var(--card-border);
   position: relative;
   overflow: hidden;
+  box-shadow:
+    0 30px 80px rgba(0, 0, 0, 0.55),
+    inset 0 1px 1px rgba(255, 255, 255, 0.12);
 }
 
 .login-card::before {
@@ -148,55 +152,58 @@
   left: 0;
   right: 0;
   height: 3px;
-  background: linear-gradient(90deg, var(--primary), var(--accent), var(--primary));
+  background: linear-gradient(90deg, #34f5a1, #60a5fa, #34f5a1);
   background-size: 200% 100%;
   animation: accentSlide 6s linear infinite;
 }
 
 .tabs {
   display: flex;
-  gap: 0;
+  gap: 4px;
   margin-bottom: 32px;
-  background: var(--chip-bg);
-  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 14px;
   padding: 4px;
 }
 
 .tab-btn {
   flex: 1;
-  padding: 14px;
+  padding: 13px;
   border: none;
   background: transparent;
-  color: var(--text-muted);
+  color: rgba(255, 255, 255, 0.55);
   font-size: 0.95rem;
   font-weight: 600;
   cursor: pointer;
-  border-radius: 10px;
-  transition: all 0.25s ease;
+  border-radius: 11px;
+  transition: all 0.25s var(--ease);
 }
 
 .tab-btn.active {
-  background: var(--card-bg);
-  color: var(--primary-text);
-  box-shadow: var(--shadow-sm);
+  background: rgba(255, 255, 255, 0.10);
+  color: #fff;
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.14);
 }
 
 .tab-btn:hover:not(.active) {
-  color: var(--primary-text);
-  background: color-mix(in srgb, var(--card-bg) 50%, transparent);
+  color: #fff;
 }
 
 .card-header {
-  margin-bottom: 28px;
+  margin-bottom: 26px;
   text-align: center;
 }
 
 .card-header h1 {
-  font-size: 1.75rem;
-  font-weight: 700;
-  color: var(--heading-color);
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 2rem;
+  font-weight: 400;
+  color: #fff;
   margin: 0;
   text-align: center;
+  line-height: 1.1;
 }
 
 .field {
@@ -206,11 +213,11 @@
 .field label {
   display: block;
   font-weight: 600;
-  color: var(--text-muted);
+  color: rgba(255, 255, 255, 0.55);
   margin-bottom: 8px;
-  font-size: 0.85rem;
+  font-size: 0.75rem;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.08em;
 }
 
 .input-wrapper {
@@ -222,46 +229,46 @@
 .input-icon {
   position: absolute;
   left: 16px;
-  color: var(--placeholder);
+  color: rgba(255, 255, 255, 0.4);
   pointer-events: none;
   transition: color 0.2s;
 }
 
 .input-wrapper:focus-within .input-icon {
-  color: var(--primary);
+  color: #34f5a1;
 }
 
 .field input {
   width: 100%;
-  padding: 16px 16px 16px 50px;
-  border: 1.5px solid var(--input-border);
-  border-radius: 12px;
+  padding: 15px 16px 15px 50px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 14px;
   font-size: 1rem;
-  color: var(--text);
-  background: var(--input-bg);
+  color: #fff;
+  background: rgba(255, 255, 255, 0.05);
   box-sizing: border-box;
-  transition: all 0.2s ease;
+  transition: all 0.2s var(--ease);
 }
 
 .field input::placeholder {
-  color: var(--placeholder);
+  color: rgba(255, 255, 255, 0.32);
 }
 
 .field input:focus {
   outline: none;
-  border-color: var(--primary);
-  background: var(--card-bg);
-  box-shadow: 0 0 0 4px color-mix(in srgb, var(--primary) 14%, transparent);
+  border-color: rgba(52, 245, 161, 0.6);
+  background: rgba(255, 255, 255, 0.07);
+  box-shadow: 0 0 0 4px rgba(52, 245, 161, 0.12);
 }
 
 .error-msg {
-  background: color-mix(in srgb, var(--danger) 12%, transparent);
-  color: var(--danger);
+  background: rgba(248, 113, 113, 0.12);
+  color: #fca5a5;
   padding: 14px 18px;
-  border-radius: 10px;
+  border-radius: 12px;
   margin-bottom: 20px;
   font-size: 0.9rem;
-  border: 1px solid color-mix(in srgb, var(--danger) 28%, transparent);
+  border: 1px solid rgba(248, 113, 113, 0.3);
   animation: shakeIn 0.4s ease;
   text-align: center;
 }
@@ -269,36 +276,23 @@
 .btn-login {
   width: 100%;
   padding: 16px;
-  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
-  color: white;
+  background: #ffffff;
+  color: #050507;
   border: none;
-  border-radius: 12px;
+  border-radius: 14px;
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
-  letter-spacing: 0.5px;
-  transition: all 0.25s ease;
+  letter-spacing: 0.01em;
+  transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease), opacity 0.25s var(--ease);
   position: relative;
   overflow: hidden;
   margin-top: 8px;
 }
 
-.btn-login::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: rgba(255, 255, 255, 0.14);
-  opacity: 0;
-  transition: opacity 0.25s;
-}
-
-.btn-login:hover::before {
-  opacity: 1;
-}
-
 .btn-login:hover {
   transform: translateY(-2px);
-  box-shadow: var(--shadow-md);
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.2);
 }
 
 .btn-login:active {
@@ -306,14 +300,11 @@
 }
 
 .btn-login:disabled {
-  background: var(--border-color);
+  background: rgba(255, 255, 255, 0.3);
+  color: rgba(5, 5, 7, 0.6);
   cursor: not-allowed;
   transform: none;
   box-shadow: none;
-}
-
-.btn-login:disabled::before {
-  display: none;
 }
 
 .btn-loading {
@@ -326,15 +317,15 @@
 .spinner {
   width: 18px;
   height: 18px;
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  border-top-color: #fff;
+  border: 2px solid rgba(5, 5, 7, 0.25);
+  border-top-color: #050507;
   border-radius: 50%;
   animation: spin 0.6s linear infinite;
 }
 
 .login-footer {
   text-align: center;
-  color: var(--placeholder);
+  color: rgba(255, 255, 255, 0.35);
   font-size: 0.8rem;
   margin: 28px 0 0;
 }
@@ -361,18 +352,14 @@
   to { transform: rotate(360deg); }
 }
 
-@keyframes gradientShift {
-  0%, 100% { background-position: 0% 0%, 0% 0%, 0% 50%; }
-  50% { background-position: 0% 0%, 0% 0%, 100% 50%; }
-}
-
-@keyframes orbFloat {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  50% { transform: translate(40px, -30px) scale(1.12); }
-}
-
 @keyframes accentSlide {
   to { background-position: 200% 0; }
+}
+
+@keyframes aurora {
+  0% { transform: translate3d(-4%, -2%, 0) scale(1); }
+  50% { transform: translate3d(4%, 3%, 0) scale(1.12); }
+  100% { transform: translate3d(-2%, 4%, 0) scale(1.05); }
 }
 
 @media (max-width: 900px) {
@@ -382,18 +369,17 @@
 
   .login-left {
     padding: 40px 24px 32px;
-    min-height: auto;
   }
 
   .brand-title {
-    font-size: 1.5rem;
+    font-size: 2rem;
   }
 
   .login-features {
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 10px;
+    max-width: none;
   }
 
   .feature-item {
@@ -402,7 +388,7 @@
   }
 
   .login-right {
-    padding: 32px 20px;
+    padding: 32px 20px 48px;
   }
 
   .login-card {
@@ -421,24 +407,20 @@
   }
 
   .brand-title {
-    font-size: 1.3rem;
+    font-size: 1.7rem;
   }
 
   .brand-subtitle {
     font-size: 0.85rem;
   }
 
-  .feature-item span:not(.feature-icon) {
-    font-size: 0.8rem;
-  }
-
   .login-card {
     padding: 28px 20px;
-    border-radius: 16px;
+    border-radius: 20px;
   }
 
   .card-header h1 {
-    font-size: 1.4rem;
+    font-size: 1.7rem;
   }
 
   .field input {

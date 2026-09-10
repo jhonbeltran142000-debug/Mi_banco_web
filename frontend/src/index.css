@@ -62,8 +62,9 @@
   --ease: cubic-bezier(0.4, 0, 0.2, 1);
 
   /* --- Typography --- */
-  --font-display: 'Sora', 'Segoe UI', sans-serif;
-  --font-body: 'IBM Plex Sans', 'Segoe UI', sans-serif;
+  --font-display: 'Barlow', 'Segoe UI', sans-serif;
+  --font-body: 'Barlow', 'Segoe UI', sans-serif;
+  --font-serif: 'Instrument Serif', Georgia, 'Times New Roman', serif;
   --font-mono: 'IBM Plex Mono', 'SF Mono', Consolas, monospace;
   --sans: var(--font-body);
 
@@ -79,49 +80,49 @@
 body.dark-mode {
   color-scheme: dark;
 
-  --primary: #3f51b5;
-  --primary-light: #5c6bc0;
-  --primary-text: #9aa2ff;
-  --primary-soft: #1a237e33;
-  --accent: #00e676;
+  --primary: #10b981;
+  --primary-light: #34d399;
+  --primary-text: #6ee7b7;
+  --primary-soft: rgba(16, 185, 129, 0.14);
+  --accent: #34f5a1;
 
-  --success: #66bb6a;
-  --success-light: #81c784;
-  --danger: #ef5350;
-  --danger-light: #ef9a9a;
-  --warning: #ffa726;
-  --info: #42a5f5;
+  --success: #34d399;
+  --success-light: #6ee7b7;
+  --danger: #f87171;
+  --danger-light: #fca5a5;
+  --warning: #fbbf24;
+  --info: #60a5fa;
 
-  --bg: #0f1117;
-  --card-bg: #1a1d27;
-  --card-border: #262b38;
-  --surface-2: #20242f;
-  --input-bg: #20242f;
-  --input-border: #333a49;
-  --border-color: #333a49;
+  --bg: #050507;
+  --card-bg: rgba(255, 255, 255, 0.035);
+  --card-border: rgba(255, 255, 255, 0.09);
+  --surface-2: rgba(255, 255, 255, 0.05);
+  --input-bg: rgba(255, 255, 255, 0.045);
+  --input-border: rgba(255, 255, 255, 0.14);
+  --border-color: rgba(255, 255, 255, 0.13);
 
-  --heading-color: #f2f4f8;
-  --text: #d6dbe4;
-  --text-muted: #9aa4b2;
-  --muted: #8b95a3;
-  --placeholder: #6b7484;
+  --heading-color: #f4f6f8;
+  --text: #dfe3e8;
+  --text-muted: rgba(255, 255, 255, 0.62);
+  --muted: rgba(255, 255, 255, 0.45);
+  --placeholder: rgba(255, 255, 255, 0.32);
 
-  --table-header-bg: #20242f;
-  --table-hover: #232838;
-  --table-border: #262b38;
+  --table-header-bg: rgba(255, 255, 255, 0.03);
+  --table-hover: rgba(255, 255, 255, 0.05);
+  --table-border: rgba(255, 255, 255, 0.07);
 
-  --sidebar-bg: #151821;
-  --sidebar-border: #262b38;
-  --sidebar-hover: #20242f;
-  --sidebar-active-bg: #1a237e40;
-  --topbar-bg: #151821;
-  --topbar-border: #262b38;
-  --chip-bg: #232838;
+  --sidebar-bg: rgba(10, 11, 16, 0.55);
+  --sidebar-border: rgba(255, 255, 255, 0.08);
+  --sidebar-hover: rgba(255, 255, 255, 0.06);
+  --sidebar-active-bg: rgba(255, 255, 255, 0.10);
+  --topbar-bg: rgba(8, 9, 13, 0.5);
+  --topbar-border: rgba(255, 255, 255, 0.08);
+  --chip-bg: rgba(255, 255, 255, 0.06);
 
-  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.3);
-  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.4);
-  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.45);
-  --shadow-lg: 0 16px 40px rgba(0, 0, 0, 0.55);
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.45);
+  --shadow-md: 0 12px 40px rgba(0, 0, 0, 0.55);
+  --shadow-lg: 0 24px 70px rgba(0, 0, 0, 0.65);
 }
 
 * {
@@ -149,6 +150,21 @@ h1, h2, h3, h4 {
   font-weight: 600;
   color: var(--heading-color);
   letter-spacing: -0.02em;
+}
+
+h1 {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+body.dark-mode {
+  background:
+    radial-gradient(55% 45% at 12% 8%, rgba(52, 245, 161, 0.10), transparent 60%),
+    radial-gradient(45% 45% at 88% 12%, rgba(96, 165, 250, 0.10), transparent 60%),
+    radial-gradient(60% 55% at 50% 108%, rgba(16, 185, 129, 0.12), transparent 62%),
+    var(--bg);
+  background-attachment: fixed;
 }
 
 button,

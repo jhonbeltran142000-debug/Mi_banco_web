@@ -18,10 +18,13 @@
 }
 
 .dash-header-text h1 {
-  font-size: 1.6rem;
-  font-weight: 700;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.9rem;
+  font-weight: 400;
   color: var(--heading-color);
   margin: 0;
+  line-height: 1.1;
 }
 
 .dash-header-text p {
