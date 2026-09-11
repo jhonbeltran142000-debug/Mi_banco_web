@@ -7,8 +7,8 @@
   min-height: 100vh;
   position: relative;
   overflow: hidden;
-  background: var(--bg);
-  color: var(--text);
+  background: #050507;
+  color: #dfe3e8;
 }
 
 .login-page::before {

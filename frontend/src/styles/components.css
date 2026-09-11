@@ -80,6 +80,7 @@ body.dark-mode .btn-outline {
   border: 1px solid var(--card-border);
   box-shadow: var(--shadow-xs);
   overflow: hidden;
+  position: relative;
   animation: cardIn 0.5s var(--ease) backwards;
   transition: box-shadow var(--duration-normal) var(--ease), transform var(--duration-normal) var(--ease);
 }
