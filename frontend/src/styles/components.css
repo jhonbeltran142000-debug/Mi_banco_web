@@ -5,8 +5,8 @@
 /* --- Liquid glass (cinematic dark) --- */
 .liquid-glass {
   background: rgba(255, 255, 255, 0.035);
-  backdrop-filter: blur(18px) saturate(140%);
-  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  backdrop-filter: blur(22px) saturate(150%);
+  -webkit-backdrop-filter: blur(22px) saturate(150%);
   border: 1px solid rgba(255, 255, 255, 0.09);
   box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.08), var(--shadow-sm);
 }
@@ -18,8 +18,8 @@ body.dark-mode .dash-stats-bar,
 body.dark-mode .dash-table-card,
 body.dark-mode .resumen-card,
 body.dark-mode .cronograma-card {
-  backdrop-filter: blur(18px) saturate(140%);
-  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  backdrop-filter: blur(22px) saturate(150%);
+  -webkit-backdrop-filter: blur(22px) saturate(150%);
   box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.07), var(--shadow-sm);
 }
 
@@ -81,6 +81,22 @@ body.dark-mode .btn-outline {
   box-shadow: var(--shadow-xs);
   overflow: hidden;
   animation: cardIn 0.5s var(--ease) backwards;
+  transition: box-shadow var(--duration-normal) var(--ease), transform var(--duration-normal) var(--ease);
+}
+
+body.dark-mode .card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--gradient-card-shine);
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.card > * {
+  position: relative;
+  z-index: 1;
 }
 
 .card:nth-child(2) { animation-delay: 0.05s; }
@@ -140,7 +156,7 @@ body.dark-mode .btn-outline {
   font-size: 0.95rem;
   color: var(--text);
   background: var(--input-bg);
-  transition: border-color 0.2s var(--ease), box-shadow 0.2s var(--ease);
+  transition: border-color var(--duration-normal) var(--ease), box-shadow var(--duration-normal) var(--ease);
   width: 100%;
 }
 
@@ -172,7 +188,7 @@ body.dark-mode .btn-outline {
   font-size: 0.9rem;
   font-weight: 600;
   cursor: pointer;
-  transition: transform 0.2s var(--ease), box-shadow 0.2s var(--ease), background 0.2s var(--ease);
+  transition: transform var(--duration-fast) var(--ease), box-shadow var(--duration-normal) var(--ease), background var(--duration-normal) var(--ease);
   display: inline-flex;
   align-items: center;
   gap: 6px;
@@ -262,11 +278,12 @@ body.dark-mode .btn-outline {
 }
 
 .data-table tbody tr {
-  transition: background 0.15s var(--ease);
+  transition: background var(--duration-fast) var(--ease), box-shadow var(--duration-fast) var(--ease);
 }
 
 .data-table tbody tr:hover {
   background: var(--table-hover);
+  box-shadow: inset 3px 0 0 var(--primary);
 }
 
 .data-table tbody tr:last-child td {
@@ -311,7 +328,19 @@ body.dark-mode .btn-outline {
   border-radius: var(--radius-pill);
   font-size: 0.73rem;
   font-weight: 600;
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: transform var(--duration-fast) var(--ease);
+}
+
+.badge::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+  flex-shrink: 0;
 }
 
 .badge-success {
@@ -331,13 +360,23 @@ body.dark-mode .btn-outline {
 
 /* --- Status bar --- */
 .status-bar {
-  background: linear-gradient(135deg, #0f1758, var(--primary));
+  background: var(--gradient-primary);
   border-radius: var(--radius-lg);
   padding: 20px 24px;
   display: flex;
   justify-content: center;
   gap: 40px;
   flex-wrap: wrap;
+  position: relative;
+  overflow: hidden;
+}
+
+.status-bar::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--gradient-card-shine);
+  pointer-events: none;
 }
 
 .status-item {
@@ -378,7 +417,7 @@ body.dark-mode .btn-outline {
   border-radius: var(--radius-sm);
   text-align: center;
   border: 1px solid color-mix(in srgb, var(--success) 28%, transparent);
-  animation: fadeIn 0.25s var(--ease);
+  animation: fadeIn var(--duration-normal) var(--ease);
 }
 
 .error-msg {
@@ -388,7 +427,7 @@ body.dark-mode .btn-outline {
   border-radius: var(--radius-sm);
   text-align: center;
   border: 1px solid color-mix(in srgb, var(--danger) 28%, transparent);
-  animation: fadeIn 0.25s var(--ease);
+  animation: fadeIn var(--duration-normal) var(--ease);
 }
 
 /* --- Utilities --- */

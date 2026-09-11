@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { useAuth } from '../../context/AuthContext';
-import api from '../../services/api';
 import './Login.css';
 
 export default function Login() {
@@ -10,7 +9,7 @@ export default function Login() {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
-  const { login } = useAuth();
+  const { login, register } = useAuth();
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -38,11 +37,7 @@ export default function Login() {
     setLoading(true);
 
     try {
-      const response = await api.post('/auth/register', { username, password });
-      const { token } = response.data;
-      localStorage.setItem('token', token);
-      localStorage.setItem('username', username);
-      window.location.href = '/clientes';
+      await register(username, password);
     } catch (err) {
       setError(err.response?.data?.error || 'Error al registrar');
     } finally {

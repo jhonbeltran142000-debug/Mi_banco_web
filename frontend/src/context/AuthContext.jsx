@@ -3,6 +3,15 @@ import api from '../services/api';
 
 const AuthContext = createContext(null);
 
+const tokenEsValido = (token) => {
+  try {
+    const payload = JSON.parse(atob(token.split('.')[1]));
+    return typeof payload.exp === 'number' && payload.exp * 1000 > Date.now();
+  } catch {
+    return false;
+  }
+};
+
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -10,14 +19,27 @@ export function AuthProvider({ children }) {
   useEffect(() => {
     const token = localStorage.getItem('token');
     const username = localStorage.getItem('username');
-    if (token && username) {
+
+    if (token && username && tokenEsValido(token)) {
       setUser({ token, username });
+    } else {
+      localStorage.removeItem('token');
+      localStorage.removeItem('username');
     }
     setLoading(false);
   }, []);
 
   const login = async (username, password) => {
     const response = await api.post('/auth/login', { username, password });
+    const { token } = response.data;
+    localStorage.setItem('token', token);
+    localStorage.setItem('username', username);
+    setUser({ token, username });
+    return response.data;
+  };
+
+  const register = async (username, password) => {
+    const response = await api.post('/auth/register', { username, password });
     const { token } = response.data;
     localStorage.setItem('token', token);
     localStorage.setItem('username', username);
@@ -32,7 +54,7 @@ export function AuthProvider({ children }) {
   };
 
   return (
-    <AuthContext.Provider value={{ user, login, logout, loading }}>
+    <AuthContext.Provider value={{ user, login, register, logout, loading }}>
       {children}
     </AuthContext.Provider>
   );

@@ -7,8 +7,8 @@
   min-height: 100vh;
   position: relative;
   overflow: hidden;
-  background: #050507;
-  color: #dfe3e8;
+  background: var(--bg);
+  color: var(--text);
 }
 
 .login-page::before {
@@ -93,7 +93,7 @@
   border: 1px solid rgba(255, 255, 255, 0.08);
   box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.06);
   animation: slideIn 0.6s ease-out backwards;
-  transition: transform 0.25s var(--ease), background 0.25s var(--ease), border-color 0.25s var(--ease);
+  transition: transform var(--duration-normal) var(--ease), background var(--duration-normal) var(--ease), border-color var(--duration-normal) var(--ease);
 }
 
 .feature-item:hover {
@@ -177,7 +177,7 @@
   font-weight: 600;
   cursor: pointer;
   border-radius: 11px;
-  transition: all 0.25s var(--ease);
+  transition: all var(--duration-normal) var(--ease);
 }
 
 .tab-btn.active {
@@ -231,7 +231,7 @@
   left: 16px;
   color: rgba(255, 255, 255, 0.4);
   pointer-events: none;
-  transition: color 0.2s;
+  transition: color var(--duration-normal) var(--ease);
 }
 
 .input-wrapper:focus-within .input-icon {
@@ -247,7 +247,7 @@
   color: #fff;
   background: rgba(255, 255, 255, 0.05);
   box-sizing: border-box;
-  transition: all 0.2s var(--ease);
+  transition: all var(--duration-normal) var(--ease);
 }
 
 .field input::placeholder {
@@ -276,7 +276,7 @@
 .btn-login {
   width: 100%;
   padding: 16px;
-  background: #ffffff;
+  background: linear-gradient(135deg, #ffffff 0%, #e8e8e8 100%);
   color: #050507;
   border: none;
   border-radius: 14px;
@@ -284,10 +284,23 @@
   font-weight: 600;
   cursor: pointer;
   letter-spacing: 0.01em;
-  transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease), opacity 0.25s var(--ease);
+  transition: transform var(--duration-normal) var(--ease), box-shadow var(--duration-normal) var(--ease), opacity var(--duration-normal) var(--ease);
   position: relative;
   overflow: hidden;
-  margin-top: 8px;
+  margin-top: 12px;
+}
+
+.btn-login::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, transparent 30%, rgba(52, 245, 161, 0.15) 100%);
+  opacity: 0;
+  transition: opacity var(--duration-normal) var(--ease);
+}
+
+.btn-login:hover::before {
+  opacity: 1;
 }
 
 .btn-login:hover {
@@ -346,10 +359,6 @@
   40% { transform: translateX(6px); }
   60% { transform: translateX(-4px); }
   80% { transform: translateX(4px); }
-}
-
-@keyframes spin {
-  to { transform: rotate(360deg); }
 }
 
 @keyframes accentSlide {

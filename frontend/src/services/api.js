@@ -22,13 +22,39 @@ api.interceptors.request.use((config) => {
 api.interceptors.response.use(
   (response) => response,
   (error) => {
-    if (error.response?.status === 401) {
+    const url = error.config?.url || '';
+    const esEndpointAuth = url.includes('/auth/login') || url.includes('/auth/register');
+
+    // Un 401 en el login/registro es un error de credenciales, no una
+    // sesion expirada: se deja que el formulario muestre el mensaje.
+    if (error.response?.status === 401 && !esEndpointAuth) {
       localStorage.removeItem('token');
       localStorage.removeItem('username');
-      window.location.href = '/login';
+      if (window.location.pathname !== '/login') {
+        window.location.href = '/login';
+      }
     }
     return Promise.reject(error);
   }
 );
+
+// Descarga un PDF verificando que la respuesta sea realmente un archivo.
+export const descargarPDF = async (path, filename) => {
+  const response = await api.get(path, { responseType: 'blob' });
+  const contentType = response.headers['content-type'] || '';
+
+  if (contentType.includes('application/json')) {
+    throw new Error('No se pudo generar el PDF');
+  }
+
+  const blobUrl = window.URL.createObjectURL(response.data);
+  const link = document.createElement('a');
+  link.href = blobUrl;
+  link.download = filename;
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+  window.URL.revokeObjectURL(blobUrl);
+};
 
 export default api;

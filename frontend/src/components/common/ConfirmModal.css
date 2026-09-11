@@ -16,7 +16,7 @@
   max-width: 400px;
   width: 100%;
   box-shadow: var(--shadow-lg);
-  animation: confirmIn 0.2s var(--ease);
+  animation: confirmIn var(--duration-normal) var(--ease);
   border: 1px solid var(--card-border);
 }
 
@@ -45,7 +45,7 @@
   font-size: 0.9rem;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.2s var(--ease);
+  transition: all var(--duration-normal) var(--ease);
 }
 
 .confirm-cancel {

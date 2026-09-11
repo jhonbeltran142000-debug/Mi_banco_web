@@ -67,16 +67,31 @@ export default function SimuladorCredito() {
 
   const calcularSimulacion = () => {
     setError('');
+    const m = parseFloat(monto);
+    const t = parseFloat(tasa);
+    const p = parseInt(plazo, 10);
+
+    if (!Number.isFinite(m) || m <= 0) {
+      setError('El monto debe ser un numero mayor a 0.');
+      return;
+    }
+    if (!Number.isFinite(t) || t < 0 || t > 1000) {
+      setError('La ganancia/interes debe estar entre 0 y 1000%.');
+      return;
+    }
+    if (!Number.isInteger(p) || p < 1 || p > 520) {
+      setError('El plazo debe ser un numero entero entre 1 y 520.');
+      return;
+    }
+
     try {
-      const m = parseFloat(monto);
-      const t = parseFloat(tasa) / 100;
-      const p = parseInt(plazo);
+      const tDecimal = t / 100;
       const hoy = new Date();
       let total = 0;
       const cuotas = [];
 
       if (modalidad === 'Gota a Gota (Semana)') {
-        const valorCuota = redondear((m + m * t) / p, 100);
+        const valorCuota = redondear((m + m * tDecimal) / p, 100);
         for (let i = 1; i <= p; i++) {
           const fecha = new Date(hoy);
           fecha.setDate(fecha.getDate() + i * 7);
@@ -84,7 +99,7 @@ export default function SimuladorCredito() {
           total += valorCuota;
         }
       } else if (modalidad.includes('Gota')) {
-        const valorCuota = redondear((m + m * t) / p, 100);
+        const valorCuota = redondear((m + m * tDecimal) / p, 100);
         for (let i = 1; i <= p; i++) {
           const fecha = new Date(hoy);
           fecha.setDate(fecha.getDate() + i);
@@ -95,7 +110,7 @@ export default function SimuladorCredito() {
         const amortizacion = m / p;
         let saldo = m;
         for (let i = 1; i <= p; i++) {
-          const valorCuota = redondear(amortizacion + saldo * t, 1000);
+          const valorCuota = redondear(amortizacion + saldo * tDecimal, 1000);
           saldo -= amortizacion;
           const fecha = new Date(hoy);
           fecha.setDate(fecha.getDate() + 30 * i);
@@ -127,9 +142,8 @@ export default function SimuladorCredito() {
         modalidad,
         monto: parseFloat(monto),
         tasa: parseFloat(tasa),
-        plazo: parseInt(plazo),
+        plazo: parseInt(plazo, 10),
         total: simulacion.total,
-        lista_cuotas: simulacion.cuotas,
       });
       setMensaje('Credito desembolsado y guardado correctamente');
       setSimulacion({ cuotas: [], total: 0, ganancia: 0 });
@@ -181,17 +195,17 @@ export default function SimuladorCredito() {
 
             <div className="form-field">
               <label htmlFor="sim-monto">Monto</label>
-              <input id="sim-monto" type="number" value={monto} onChange={(e) => setMonto(e.target.value)} />
+              <input id="sim-monto" type="number" value={monto} onChange={(e) => setMonto(e.target.value)} min="1" max="1000000000" />
             </div>
 
             <div className="form-field">
               <label htmlFor="sim-tasa">{modalidad.includes('Gota') ? 'Ganancia (%)' : 'Interes (%)'}</label>
-              <input id="sim-tasa" type="number" value={tasa} onChange={(e) => setTasa(e.target.value)} step="0.1" />
+              <input id="sim-tasa" type="number" value={tasa} onChange={(e) => setTasa(e.target.value)} step="0.1" min="0" max="1000" />
             </div>
 
             <div className="form-field">
               <label htmlFor="sim-plazo">{modalidad === 'Gota a Gota (Semana)' ? 'Semanas' : modalidad.includes('Gota') ? 'Dias' : 'Meses'}</label>
-              <input id="sim-plazo" type="number" value={plazo} onChange={(e) => setPlazo(e.target.value)} />
+              <input id="sim-plazo" type="number" value={plazo} onChange={(e) => setPlazo(e.target.value)} min="1" max="520" />
             </div>
           </div>
 

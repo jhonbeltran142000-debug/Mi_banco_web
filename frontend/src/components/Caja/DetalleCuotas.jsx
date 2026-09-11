@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import api, { BASE_URL } from '../../services/api';
+import api, { descargarPDF } from '../../services/api';
 import ConfirmModal from '../common/ConfirmModal';
 
 export default function DetalleCuotas({ prestamoId, onPagoRegistrado }) {
@@ -35,22 +35,17 @@ export default function DetalleCuotas({ prestamoId, onPagoRegistrado }) {
     setShowConfirm(false);
     const cuota = cuotaPendiente;
     setCuotaPendiente(null);
+    setError('');
 
     try {
       await api.post(`/cuotas/${cuota.id}/pagar`);
       setMensaje('Pago registrado exitosamente');
 
-      const token = localStorage.getItem('token');
-      const res = await fetch(`${BASE_URL}/api/pdf/recibo/${cuota.id}`, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
-      const blob = await res.blob();
-      const url = window.URL.createObjectURL(blob);
-      const link = document.createElement('a');
-      link.href = url;
-      link.download = `Recibo_Cuota_${cuota.numero_cuota}.pdf`;
-      link.click();
-      window.URL.revokeObjectURL(url);
+      try {
+        await descargarPDF(`/pdf/recibo/${cuota.id}`, `Recibo_Cuota_${cuota.numero_cuota}.pdf`);
+      } catch {
+        setError('El pago se registro, pero no se pudo generar el recibo.');
+      }
 
       if (onPagoRegistrado) onPagoRegistrado();
 

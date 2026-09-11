@@ -42,7 +42,7 @@
   font-size: 0.9rem;
   font-weight: 600;
   cursor: pointer;
-  transition: transform 0.2s var(--ease), box-shadow 0.2s var(--ease), border-color 0.2s var(--ease);
+  transition: transform var(--duration-normal) var(--ease), box-shadow var(--duration-normal) var(--ease), border-color var(--duration-normal) var(--ease);
 }
 
 .btn-refresh:hover {
@@ -89,7 +89,23 @@
   gap: 16px;
   border: 1px solid var(--card-border);
   box-shadow: var(--shadow-xs);
-  transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease);
+  transition: transform var(--duration-normal) var(--ease), box-shadow var(--duration-normal) var(--ease);
+  position: relative;
+  overflow: hidden;
+}
+
+body.dark-mode .metrica-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--gradient-card-shine);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity var(--duration-normal) var(--ease);
+}
+
+body.dark-mode .metrica-card:hover::after {
+  opacity: 1;
 }
 
 .metrica-card:hover {
@@ -118,8 +134,8 @@
 }
 
 .metrica-purple .metrica-icon {
-  background: color-mix(in srgb, #7b1fa2 16%, transparent);
-  color: #9c4dcc;
+  background: color-mix(in srgb, var(--purple) 16%, transparent);
+  color: var(--purple-light);
 }
 
 .metrica-red .metrica-icon {
@@ -297,11 +313,12 @@
   position: relative;
   transform-origin: bottom;
   animation: barGrow 0.7s var(--ease) backwards;
-  transition: filter 0.2s var(--ease);
+  transition: filter var(--duration-normal) var(--ease), box-shadow var(--duration-normal) var(--ease);
 }
 
-.bar-fill:hover {
-  filter: brightness(1.15);
+body.dark-mode .bar-fill:hover {
+  filter: brightness(1.2);
+  box-shadow: 0 0 16px color-mix(in srgb, var(--primary) 40%, transparent);
 }
 
 .bar-value {
@@ -381,7 +398,7 @@
 }
 
 .ind-purple {
-  background: linear-gradient(90deg, #7b1fa2, #9c4dcc);
+  background: linear-gradient(90deg, var(--purple), var(--purple-light));
 }
 
 .ind-red {

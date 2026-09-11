@@ -3,12 +3,7 @@
   display: flex;
   flex-direction: column;
   gap: 24px;
-  animation: fadeInUp 0.4s ease;
-}
-
-@keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(12px); }
-  to { opacity: 1; transform: translateY(0); }
+  animation: fadeInUp var(--duration-slow) var(--ease);
 }
 
 .buscar-card .card-body {
@@ -47,7 +42,7 @@
   color: var(--text);
   background: var(--input-bg);
   box-sizing: border-box;
-  transition: border-color 0.2s var(--ease), box-shadow 0.2s var(--ease);
+  transition: border-color var(--duration-normal) var(--ease), box-shadow var(--duration-normal) var(--ease);
 }
 
 .buscar-input-wrapper input::placeholder {
@@ -92,13 +87,23 @@
 }
 
 .caja-status {
-  background: linear-gradient(135deg, #14532d, var(--success));
+  background: var(--gradient-success);
   border-radius: var(--radius-lg);
   padding: 20px 24px;
   display: flex;
   justify-content: center;
   gap: 40px;
   flex-wrap: wrap;
+  position: relative;
+  overflow: hidden;
+}
+
+.caja-status::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--gradient-card-shine);
+  pointer-events: none;
 }
 
 .caja-status .status-item {
@@ -118,7 +123,7 @@
   font-family: var(--font-display);
   font-size: 1.4rem;
   font-weight: 700;
-  color: #a7f3c9;
+  color: var(--green-light);
   font-variant-numeric: tabular-nums;
 }
 

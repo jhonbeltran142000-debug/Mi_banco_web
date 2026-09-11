@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import api, { BASE_URL } from '../../services/api';
+import api, { descargarPDF } from '../../services/api';
 import BuscarCartera from './BuscarCartera';
 import DetalleCuotas from './DetalleCuotas';
 import '../Clientes/Clientes.css';
@@ -50,36 +50,32 @@ export default function Caja() {
     setMensaje('Ingreso asentado correctamente. Se genero el recibo.');
   };
 
-  const descargarPDF = async (url, filename) => {
-    const token = localStorage.getItem('token');
-    const res = await fetch(url, {
-      headers: { Authorization: `Bearer ${token}` },
-    });
-    const blob = await res.blob();
-    const blobUrl = window.URL.createObjectURL(blob);
-    const link = document.createElement('a');
-    link.href = blobUrl;
-    link.download = filename;
-    link.click();
-    window.URL.revokeObjectURL(blobUrl);
+  const generarPagaré = async (prestamoId) => {
+    setError('');
+    try {
+      await descargarPDF(
+        `/pdf/pagare/${prestamoId}`,
+        `Pagare_Prestamo${prestamoId}.pdf`
+      );
+    } catch (err) {
+      setError('No se pudo generar el pagare. Intenta de nuevo.');
+    }
   };
 
-  const generarPagaré = (prestamoId) => {
-    descargarPDF(
-      `${BASE_URL}/api/pdf/pagare/${prestamoId}`,
-      `Pagare_Prestamo${prestamoId}.pdf`
-    );
-  };
-
-  const generarCierreCaja = () => {
+  const generarCierreCaja = async () => {
+    setError('');
     if (cierreCaja === 0) {
       setMensaje('No se han registrado pagos en efectivo el dia de hoy');
       return;
     }
-    descargarPDF(
-      `${BASE_URL}/api/pdf/cierre-caja`,
-      `Cierre_Caja_${new Date().toISOString().split('T')[0]}.pdf`
-    );
+    try {
+      await descargarPDF(
+        '/pdf/cierre-caja',
+        `Cierre_Caja_${new Date().toISOString().split('T')[0]}.pdf`
+      );
+    } catch (err) {
+      setError('No se pudo generar el cierre de caja. Intenta de nuevo.');
+    }
   };
 
   return (
