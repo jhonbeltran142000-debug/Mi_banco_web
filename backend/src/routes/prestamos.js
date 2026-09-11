@@ -1,6 +1,7 @@
 const express = require('express');
 const pool = require('../config/database');
 const auth = require('../middleware/auth');
+const { validarParametros, calcularCronograma } = require('../utils/amortizacion');
 const router = express.Router();
 
 router.use(auth);
@@ -46,13 +47,25 @@ router.get('/:id/cuotas', async (req, res) => {
 
 // Guardar prestamo completo (prestamo + cronograma)
 router.post('/', async (req, res) => {
-  const conn = await pool.getConnection();
+  let conn;
   try {
     const userId = req.user.id;
-    const { cedula, modalidad, monto, tasa, plazo, total, lista_cuotas } = req.body;
+    const { cedula, modalidad, monto, tasa, plazo, total } = req.body;
 
-    if (!cedula || !modalidad || !monto || !tasa || !plazo || !total || !lista_cuotas) {
+    if (!cedula || !modalidad || monto === undefined || tasa === undefined || !plazo) {
       return res.status(400).json({ error: 'Todos los campos son obligatorios.' });
+    }
+
+    const errorParametros = validarParametros({ monto, tasa, plazo, modalidad });
+    if (errorParametros) {
+      return res.status(400).json({ error: errorParametros });
+    }
+
+    // Los valores financieros se calculan en el servidor, nunca se confia en el cliente.
+    const { cuotas, total: totalCalculado } = calcularCronograma({ monto, tasa, plazo, modalidad });
+
+    if (total !== undefined && Math.abs(Number(total) - totalCalculado) > 1) {
+      return res.status(400).json({ error: 'El total enviado no coincide con el calculo del credito.' });
     }
 
     // Verificar que el cliente pertenece al usuario
@@ -61,18 +74,19 @@ router.post('/', async (req, res) => {
       return res.status(404).json({ error: 'Cliente no encontrado.' });
     }
 
+    conn = await pool.getConnection();
     await conn.beginTransaction();
 
     const fecha = new Date().toISOString().split('T')[0];
 
     const [prestamoResult] = await conn.query(
       'INSERT INTO prestamos (user_id, cliente_cedula, modalidad, monto_prestado, tasa_interes, plazo, fecha_desembolso, total_a_pagar) VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
-      [userId, cedula, modalidad, monto, tasa, plazo, fecha, total]
+      [userId, cedula, modalidad, monto, tasa, plazo, fecha, totalCalculado]
     );
 
     const prestamoId = prestamoResult.insertId;
 
-    for (const cuota of lista_cuotas) {
+    for (const cuota of cuotas) {
       await conn.query(
         'INSERT INTO cronograma_pagos (prestamo_id, numero_cuota, fecha_vencimiento, valor_cuota) VALUES (?, ?, ?, ?)',
         [prestamoId, cuota.numero, cuota.fecha, cuota.valor]
@@ -81,13 +95,19 @@ router.post('/', async (req, res) => {
 
     await conn.commit();
 
-    res.status(201).json({ id: prestamoId, message: 'Prestamo desembolsado exitosamente.' });
+    res.status(201).json({ id: prestamoId, total: totalCalculado, message: 'Prestamo desembolsado exitosamente.' });
   } catch (error) {
-    await conn.rollback();
+    if (conn) {
+      try {
+        await conn.rollback();
+      } catch (rollbackError) {
+        console.error('Error al revertir transaccion:', rollbackError);
+      }
+    }
     console.error('Error al guardar prestamo:', error);
     res.status(500).json({ error: 'Error al guardar prestamo.' });
   } finally {
-    conn.release();
+    if (conn) conn.release();
   }
 });
 
