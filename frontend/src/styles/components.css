@@ -5,8 +5,6 @@
 /* --- Liquid glass (cinematic dark) --- */
 .liquid-glass {
   background: rgba(255, 255, 255, 0.035);
-  backdrop-filter: blur(22px) saturate(150%);
-  -webkit-backdrop-filter: blur(22px) saturate(150%);
   border: 1px solid rgba(255, 255, 255, 0.09);
   box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.08), var(--shadow-sm);
 }
@@ -18,8 +16,6 @@ body.dark-mode .dash-stats-bar,
 body.dark-mode .dash-table-card,
 body.dark-mode .resumen-card,
 body.dark-mode .cronograma-card {
-  backdrop-filter: blur(22px) saturate(150%);
-  -webkit-backdrop-filter: blur(22px) saturate(150%);
   box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.07), var(--shadow-sm);
 }
 
@@ -80,24 +76,8 @@ body.dark-mode .btn-outline {
   border: 1px solid var(--card-border);
   box-shadow: var(--shadow-xs);
   overflow: hidden;
-  position: relative;
   animation: cardIn 0.5s var(--ease) backwards;
   transition: box-shadow var(--duration-normal) var(--ease), transform var(--duration-normal) var(--ease);
-}
-
-body.dark-mode .card::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: var(--gradient-card-shine);
-  border-radius: inherit;
-  pointer-events: none;
-  z-index: 0;
-}
-
-.card > * {
-  position: relative;
-  z-index: 1;
 }
 
 .card:nth-child(2) { animation-delay: 0.05s; }

@@ -90,22 +90,6 @@
   border: 1px solid var(--card-border);
   box-shadow: var(--shadow-xs);
   transition: transform var(--duration-normal) var(--ease), box-shadow var(--duration-normal) var(--ease);
-  position: relative;
-  overflow: hidden;
-}
-
-body.dark-mode .metrica-card::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: var(--gradient-card-shine);
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity var(--duration-normal) var(--ease);
-}
-
-body.dark-mode .metrica-card:hover::after {
-  opacity: 1;
 }
 
 .metrica-card:hover {
