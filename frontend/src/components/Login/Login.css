@@ -16,9 +16,9 @@
   position: absolute;
   inset: -30%;
   background:
-    radial-gradient(38% 38% at 22% 28%, rgba(52, 245, 161, 0.22), transparent 60%),
+    radial-gradient(38% 38% at 22% 28%, rgba(96, 165, 250, 0.22), transparent 60%),
     radial-gradient(36% 36% at 80% 18%, rgba(96, 165, 250, 0.18), transparent 60%),
-    radial-gradient(44% 44% at 62% 92%, rgba(16, 185, 129, 0.20), transparent 62%);
+    radial-gradient(44% 44% at 62% 92%, rgba(59, 130, 246, 0.20), transparent 62%);
   filter: blur(50px);
   animation: aurora 24s ease-in-out infinite alternate;
   pointer-events: none;
@@ -55,13 +55,12 @@
 }
 
 .brand-title {
-  font-family: var(--font-serif);
-  font-style: italic;
-  font-size: 2.65rem;
-  font-weight: 400;
+  font-family: var(--font-heading);
+  font-size: 2.5rem;
+  font-weight: 800;
   color: #fff;
   margin: 0 0 8px;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.02em;
   line-height: 1.05;
 }
 
@@ -99,7 +98,7 @@
 .feature-item:hover {
   transform: translateX(6px);
   background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(52, 245, 161, 0.4);
+  border-color: rgba(96, 165, 250, 0.4);
 }
 
 .feature-item:nth-child(1) { animation-delay: 0.2s; }
@@ -114,9 +113,9 @@
   height: 34px;
   flex-shrink: 0;
   border-radius: 10px;
-  color: #34f5a1;
-  background: rgba(52, 245, 161, 0.12);
-  border: 1px solid rgba(52, 245, 161, 0.28);
+  color: #60a5fa;
+  background: rgba(96, 165, 250, 0.12);
+  border: 1px solid rgba(96, 165, 250, 0.28);
 }
 
 .login-right {
@@ -152,7 +151,7 @@
   left: 0;
   right: 0;
   height: 3px;
-  background: linear-gradient(90deg, #34f5a1, #60a5fa, #34f5a1);
+  background: linear-gradient(90deg, #3b82f6, #60a5fa, #3b82f6);
   background-size: 200% 100%;
   animation: accentSlide 6s linear infinite;
 }
@@ -196,10 +195,9 @@
 }
 
 .card-header h1 {
-  font-family: var(--font-serif);
-  font-style: italic;
-  font-size: 2rem;
-  font-weight: 400;
+  font-family: var(--font-heading);
+  font-size: 1.9rem;
+  font-weight: 700;
   color: #fff;
   margin: 0;
   text-align: center;
@@ -235,7 +233,7 @@
 }
 
 .input-wrapper:focus-within .input-icon {
-  color: #34f5a1;
+  color: #60a5fa;
 }
 
 .field input {
@@ -256,9 +254,9 @@
 
 .field input:focus {
   outline: none;
-  border-color: rgba(52, 245, 161, 0.6);
+  border-color: rgba(96, 165, 250, 0.6);
   background: rgba(255, 255, 255, 0.07);
-  box-shadow: 0 0 0 4px rgba(52, 245, 161, 0.12);
+  box-shadow: 0 0 0 4px rgba(96, 165, 250, 0.12);
 }
 
 .error-msg {
@@ -294,7 +292,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, transparent 30%, rgba(52, 245, 161, 0.15) 100%);
+  background: linear-gradient(135deg, transparent 30%, rgba(96, 165, 250, 0.15) 100%);
   opacity: 0;
   transition: opacity var(--duration-normal) var(--ease);
 }

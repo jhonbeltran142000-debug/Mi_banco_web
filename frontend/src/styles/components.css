@@ -45,10 +45,9 @@ body.dark-mode .btn-outline {
 }
 
 .page-header h1 {
-  font-family: var(--font-serif);
-  font-style: italic;
+  font-family: var(--font-heading);
   font-size: 1.9rem;
-  font-weight: 400;
+  font-weight: 700;
   color: var(--heading-color);
   margin: 0;
   line-height: 1.1;

@@ -6,11 +6,11 @@
   --primary-light: #283593;
   --primary-text: #1a237e;
   --primary-soft: #eef0ff;
-  --accent: #00c853;
+  --accent: #1565c0;
 
   /* --- Semantic --- */
-  --success: #2e7d32;
-  --success-light: #43a047;
+  --success: #1565c0;
+  --success-light: #1e88e5;
   --danger: #d32f2f;
   --danger-light: #e53935;
   --warning: #e65100;
@@ -71,7 +71,7 @@
 
   /* --- Gradients --- */
   --gradient-primary: linear-gradient(135deg, var(--primary), var(--primary-light));
-  --gradient-success: linear-gradient(135deg, #14532d, var(--success));
+  --gradient-success: linear-gradient(135deg, #0d2a5c, var(--success));
   --gradient-accent: linear-gradient(135deg, var(--accent), var(--primary));
   --gradient-card-shine: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, transparent 50%, rgba(255,255,255,0.05) 100%);
 
@@ -83,15 +83,15 @@
   --duration-slow: 0.4s;
 
   /* --- Extra semantic colors --- */
-  --green-dark: #14532d;
-  --green-light: #a7f3d6;
+  --accent-dark: #0d2a5c;
+  --accent-light: #bbdefb;
   --purple: #7b1fa2;
   --purple-light: #9c4dcc;
 
   /* --- Typography --- */
-  --font-display: 'Barlow', 'Segoe UI', sans-serif;
+  --font-display: 'Manrope', 'Barlow', 'Segoe UI', sans-serif;
   --font-body: 'Barlow', 'Segoe UI', sans-serif;
-  --font-serif: 'Instrument Serif', Georgia, 'Times New Roman', serif;
+  --font-heading: 'Manrope', 'Barlow', 'Segoe UI', sans-serif;
   --font-mono: 'IBM Plex Mono', 'SF Mono', Consolas, monospace;
   --sans: var(--font-body);
 
@@ -107,14 +107,14 @@
 body.dark-mode {
   color-scheme: dark;
 
-  --primary: #10b981;
-  --primary-light: #34d399;
-  --primary-text: #6ee7b7;
-  --primary-soft: rgba(16, 185, 129, 0.14);
-  --accent: #34f5a1;
+  --primary: #3b82f6;
+  --primary-light: #60a5fa;
+  --primary-text: #93c5fd;
+  --primary-soft: rgba(59, 130, 246, 0.16);
+  --accent: #38bdf8;
 
-  --success: #34d399;
-  --success-light: #6ee7b7;
+  --success: #3b82f6;
+  --success-light: #60a5fa;
   --danger: #f87171;
   --danger-light: #fca5a5;
   --warning: #fbbf24;
@@ -150,15 +150,15 @@ body.dark-mode {
   --shadow-sm: 0 2px 6px rgba(0, 0, 0, 0.40);
   --shadow-md: 0 6px 18px rgba(0, 0, 0, 0.45);
   --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.50);
-  --shadow-glow: 0 0 24px rgba(16, 185, 129, 0.2);
+  --shadow-glow: 0 0 24px rgba(59, 130, 246, 0.25);
 
-  --gradient-primary: linear-gradient(135deg, #059669, var(--primary));
-  --gradient-success: linear-gradient(135deg, #064e3b, var(--success));
+  --gradient-primary: linear-gradient(135deg, #2563eb, var(--primary));
+  --gradient-success: linear-gradient(135deg, #1e3a8a, var(--success));
   --gradient-accent: linear-gradient(135deg, var(--accent), var(--info));
   --gradient-card-shine: linear-gradient(135deg, rgba(255,255,255,0.06) 0%, transparent 50%, rgba(255,255,255,0.02) 100%);
 
-  --green-dark: #064e3b;
-  --green-light: rgba(16, 185, 129, 0.3);
+  --accent-dark: #1e3a8a;
+  --accent-light: #bfdbfe;
   --purple: #a855f7;
   --purple-light: #c084fc;
 }
@@ -191,16 +191,16 @@ h1, h2, h3, h4 {
 }
 
 h1 {
-  font-family: var(--font-serif);
-  font-weight: 400;
-  letter-spacing: -0.01em;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  letter-spacing: -0.02em;
 }
 
 body.dark-mode {
   background:
-    radial-gradient(55% 45% at 12% 8%, rgba(52, 245, 161, 0.10), transparent 60%),
+    radial-gradient(55% 45% at 12% 8%, rgba(96, 165, 250, 0.12), transparent 60%),
     radial-gradient(45% 45% at 88% 12%, rgba(96, 165, 250, 0.10), transparent 60%),
-    radial-gradient(60% 55% at 50% 108%, rgba(16, 185, 129, 0.12), transparent 62%),
+    radial-gradient(60% 55% at 50% 108%, rgba(59, 130, 246, 0.14), transparent 62%),
     var(--bg);
 }
 
@@ -238,8 +238,8 @@ textarea {
 }
 
 @keyframes pulse-glow {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
-  50% { box-shadow: 0 0 16px 2px rgba(16, 185, 129, 0.15); }
+  0%, 100% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); }
+  50% { box-shadow: 0 0 16px 2px rgba(59, 130, 246, 0.2); }
 }
 
 @keyframes scale-in {

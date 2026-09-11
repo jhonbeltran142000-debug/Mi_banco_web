@@ -64,7 +64,7 @@ export default function Login() {
               <rect x="18" y="32" width="5" height="14" rx="1" fill="#fff"/>
               <rect x="29.5" y="32" width="5" height="14" rx="1" fill="#fff"/>
               <rect x="41" y="32" width="5" height="14" rx="1" fill="#fff"/>
-              <rect x="12" y="46" width="40" height="4" rx="1" fill="#00c853"/>
+              <rect x="12" y="46" width="40" height="4" rx="1" fill="#3b82f6"/>
             </svg>
           </div>
           <h2 className="brand-title">Sistema Bancario</h2>

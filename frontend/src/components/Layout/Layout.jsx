@@ -33,7 +33,7 @@ export default function Layout() {
                 <rect x="18" y="32" width="5" height="12" rx="1" fill="#fff"/>
                 <rect x="29.5" y="32" width="5" height="12" rx="1" fill="#fff"/>
                 <rect x="41" y="32" width="5" height="12" rx="1" fill="#fff"/>
-                <rect x="12" y="44" width="40" height="4" rx="1" fill="#00c853"/>
+                <rect x="12" y="44" width="40" height="4" rx="1" fill="#3b82f6"/>
               </svg>
             </div>
             <span className="brand-text">BancoWeb</span>

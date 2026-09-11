@@ -41,12 +41,11 @@
 }
 
 .brand-text {
-  font-family: var(--font-serif);
-  font-style: italic;
-  font-size: 1.35rem;
-  font-weight: 400;
+  font-family: var(--font-heading);
+  font-size: 1.3rem;
+  font-weight: 700;
   color: var(--heading-color);
-  letter-spacing: 0;
+  letter-spacing: -0.01em;
 }
 
 .topbar-right {
