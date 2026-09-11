@@ -77,7 +77,6 @@ body.dark-mode .btn-outline {
   box-shadow: var(--shadow-xs);
   overflow: hidden;
   animation: cardIn 0.5s var(--ease) backwards;
-  transition: box-shadow var(--duration-normal) var(--ease), transform var(--duration-normal) var(--ease);
 }
 
 .card:nth-child(2) { animation-delay: 0.05s; }
@@ -169,7 +168,7 @@ body.dark-mode .btn-outline {
   font-size: 0.9rem;
   font-weight: 600;
   cursor: pointer;
-  transition: transform var(--duration-fast) var(--ease), box-shadow var(--duration-normal) var(--ease), background var(--duration-normal) var(--ease);
+  transition: transform var(--duration-fast) var(--ease), background var(--duration-normal) var(--ease);
   display: inline-flex;
   align-items: center;
   gap: 6px;
@@ -259,7 +258,7 @@ body.dark-mode .btn-outline {
 }
 
 .data-table tbody tr {
-  transition: background var(--duration-fast) var(--ease), box-shadow var(--duration-fast) var(--ease);
+  transition: background var(--duration-fast) var(--ease);
 }
 
 .data-table tbody tr:hover {

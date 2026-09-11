@@ -138,18 +138,18 @@ body.dark-mode {
   --table-hover: rgba(255, 255, 255, 0.05);
   --table-border: rgba(255, 255, 255, 0.07);
 
-  --sidebar-bg: rgba(10, 11, 16, 0.55);
+  --sidebar-bg: rgba(10, 11, 16, 0.94);
   --sidebar-border: rgba(255, 255, 255, 0.08);
   --sidebar-hover: rgba(255, 255, 255, 0.06);
   --sidebar-active-bg: rgba(255, 255, 255, 0.10);
-  --topbar-bg: rgba(8, 9, 13, 0.5);
+  --topbar-bg: rgba(8, 9, 13, 0.94);
   --topbar-border: rgba(255, 255, 255, 0.08);
   --chip-bg: rgba(255, 255, 255, 0.06);
 
-  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.4);
-  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.45);
-  --shadow-md: 0 12px 40px rgba(0, 0, 0, 0.55);
-  --shadow-lg: 0 24px 70px rgba(0, 0, 0, 0.65);
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.35);
+  --shadow-sm: 0 2px 6px rgba(0, 0, 0, 0.40);
+  --shadow-md: 0 6px 18px rgba(0, 0, 0, 0.45);
+  --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.50);
   --shadow-glow: 0 0 24px rgba(16, 185, 129, 0.2);
 
   --gradient-primary: linear-gradient(135deg, #059669, var(--primary));
@@ -202,7 +202,6 @@ body.dark-mode {
     radial-gradient(45% 45% at 88% 12%, rgba(96, 165, 250, 0.10), transparent 60%),
     radial-gradient(60% 55% at 50% 108%, rgba(16, 185, 129, 0.12), transparent 62%),
     var(--bg);
-  background-attachment: fixed;
 }
 
 button,
